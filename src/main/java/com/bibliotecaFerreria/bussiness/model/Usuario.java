@@ -10,16 +10,16 @@ public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "dni")
+    @Column(nullable = false, length = 9)  // Spanish DNI length
     private String dni;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 100)
     private String nombre;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 255)
     private String contrasenya;
 
-    @Column(name = "correo_electronico", nullable = false, unique = true)
+    @Column(name = "correo_electronico", nullable = false, unique = true, length = 255)
     private String correoElectronico;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)

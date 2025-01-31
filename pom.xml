@@ -8,11 +8,11 @@
 		<version>3.4.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.grupLibros</groupId>
-	<artifactId>libro</artifactId>
+	<groupId>com.bibliotecaFerreria</groupId>
+	<artifactId>biblioteca</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>libro</name>
-	<description>Project for M6</description>
+	<description>Project for Ferreria</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -64,10 +64,6 @@
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

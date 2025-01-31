@@ -20,7 +20,7 @@ public class Historial implements Serializable {
     @JoinColumn(name = "dni", nullable = false)
     private Usuario usuario;
 
-    @Column(name = "isbn", nullable = false)
+    @Column(name = "isbn", nullable = false, length = 50)
     private String isbn;
 
     // Constructors
