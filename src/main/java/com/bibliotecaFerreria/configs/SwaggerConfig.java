@@ -1,4 +1,4 @@
-package com.bibliotecaFerreria.Configs;
+package com.bibliotecaFerreria.configs;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
