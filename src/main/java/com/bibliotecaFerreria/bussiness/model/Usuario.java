@@ -10,16 +10,16 @@ public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(nullable = false, length = 9)  // Spanish DNI length
+    @Column(name = "dni")
     private String dni;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false)
     private String nombre;
 
-    @Column(nullable = false, length = 255)
+    @Column(nullable = false)
     private String contrasenya;
 
-    @Column(name = "correo_electronico", nullable = false, unique = true, length = 255)
+    @Column(name = "correo_electronico", nullable = false, unique = true)
     private String correoElectronico;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
@@ -74,5 +74,9 @@ public class Usuario implements Serializable {
 
     public void setHistorial(List<Historial> historial) {
         this.historial = historial;
+    }
+    @Override
+    public String toString() {
+        return "Usuario{" + "dni=" + dni + ", nombre=" + nombre + ", contrasena=" + contrasenya + ", correoElectronico=" + correoElectronico + ", historial=" + historial + '}';
     }
 }
