@@ -1,5 +1,9 @@
 package com.bibliotecaFerreria.bussiness.model;
 
+/**
+ * @author alexl
+ * @date 07/02/2025
+ */
 public class HistorialDTO {
     private Long historialId;
     private String dni;

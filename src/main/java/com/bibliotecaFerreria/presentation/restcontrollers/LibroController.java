@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+/**
+ * @author alexl
+ * @date 07/02/2025
+ */
 @RestController
 @RequestMapping("/libros")
 @Tag(name = "Libros", description = "Gestión de libros")

@@ -1,6 +1,9 @@
 package com.bibliotecaFerreria.bussiness.model;
 
-
+/**
+ * @author alexl
+ * @date 07/02/2025
+ */
 public class LibroDTO {
     private String isbn;
     private String titulo;

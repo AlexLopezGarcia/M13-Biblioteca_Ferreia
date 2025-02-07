@@ -6,6 +6,10 @@ import java.io.Serializable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
+/**
+ * @author alexl
+ * @date 07/02/2025
+ */
 @Entity
 @Table(name = "historial")
 public class Historial implements Serializable {
