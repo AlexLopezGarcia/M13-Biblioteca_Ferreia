@@ -1,5 +1,8 @@
 package com.bibliotecaFerreria.bussiness.model;
-
+/**
+ * @author Ruben
+ * @date 07/02/2025
+ */
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.List;
