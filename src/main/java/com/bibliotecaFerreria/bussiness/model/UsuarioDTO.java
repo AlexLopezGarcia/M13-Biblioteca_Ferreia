@@ -1,5 +1,8 @@
 package com.bibliotecaFerreria.bussiness.model;
-
+/**
+ * @author Ruben
+ * @date 07/02/2025
+ */
 public class UsuarioDTO {
     private String dni; // Identificador único
     private String nombre;
