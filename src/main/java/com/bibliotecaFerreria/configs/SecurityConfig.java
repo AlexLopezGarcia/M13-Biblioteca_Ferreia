@@ -12,7 +12,10 @@
 //import org.springframework.security.web.SecurityFilterChain;
 //import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 //
-//
+// /**
+// * @author alexl
+// * @date 07/02/2025
+// */
 //@Configuration
 //@EnableWebSecurity
 //public class SecurityConfig {

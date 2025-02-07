@@ -6,6 +6,10 @@ import jakarta.persistence.Id;
 
 import java.io.Serializable;
 
+/**
+ * @author alexl
+ * @date 07/02/2025
+ */
 @Entity
 @Table(name = "libro")
 public class Libro implements Serializable {

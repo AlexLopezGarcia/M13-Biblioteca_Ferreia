@@ -10,9 +10,13 @@
 //
 //import java.util.Date;
 //
+// /**
+// * @author alexl
+// * @date 07/02/2025
+// */
 //@Component
 //public class JwtTokenProvider {
-//    @Value("${security.jwt.secret-key:MyKey}") // ✅ Si la propiedad no existe, usa "MyKey" por defecto
+//    @Value("${security.jwt.secret-key:MyKey}")
 //    private String secretKey;
 //
 //    private final long validityInMilliseconds = 3600000; // 1h
@@ -25,12 +29,12 @@
 //                .setSubject(username)
 //                .setIssuedAt(now)
 //                .setExpiration(validity)
-//                .signWith(SignatureAlgorithm.HS256, secretKey.getBytes()) // ✅ Usa getBytes() para evitar errores
+//                .signWith(SignatureAlgorithm.HS256, secretKey.getBytes())
 //                .compact();
 //    }
 //
 //    public String getUsernameFromToken(String token) {
-//        return Jwts.parserBuilder() // ✅ Usa parserBuilder() en lugar de parser()
+//        return Jwts.parserBuilder()
 //                .setSigningKey(secretKey.getBytes())
 //                .build()
 //                .parseClaimsJws(token)

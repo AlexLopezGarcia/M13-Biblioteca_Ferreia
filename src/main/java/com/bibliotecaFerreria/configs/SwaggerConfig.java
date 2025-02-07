@@ -6,6 +6,10 @@ import org.springframework.context.annotation.Configuration;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 
+/**
+ * @author alexl
+ * @date 07/02/2025
+ */
 @Configuration
 public class SwaggerConfig {
     @Bean
