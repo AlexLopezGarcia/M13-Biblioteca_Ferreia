@@ -1,10 +1,10 @@
 package com.bibliotecaFerreria.bussiness.model;
 /**
  * @author Ruben
- * @date 07/02/2025
+ * @date 17/02/2025
  */
 public class UsuarioDTO {
-    private String dni; // Identificador único
+    private String dni;
     private String nombre;
     private String correoElectronico;
 
@@ -40,13 +40,15 @@ public class UsuarioDTO {
     public void setCorreoElectronico(String correoElectronico) {
         this.correoElectronico = correoElectronico;
     }
-
-    @Override
-    public String toString() {
-        return "UsuarioDTO{" +
-                "dni='" + dni + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", correoElectronico='" + correoElectronico + '\'' +
-                '}';
+    
+    public static class UsuarioMapper {
+        public static UsuarioDTO toDTO(Usuario usuario) {
+            return new UsuarioDTO(
+                    usuario.getDni(),
+                    usuario.getNombre(),
+                    usuario.getCorreoElectronico()
+            );
+        }
     }
+
 }
