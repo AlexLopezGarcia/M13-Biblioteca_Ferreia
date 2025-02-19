@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface EstanteriaServices {
-    Integer create(Estanteria estanteria);
-    Optional<Estanteria> read(Integer id);
+    int create(Estanteria estanteria);
+    Optional<Estanteria> read(int id);
     void update(Estanteria estanteria);
-    void delete(Integer id);
+    void delete(int id);
     List<Estanteria> getAll();
 }

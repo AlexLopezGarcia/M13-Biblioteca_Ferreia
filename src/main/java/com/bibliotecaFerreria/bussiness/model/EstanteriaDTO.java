@@ -1,39 +1,20 @@
 package com.bibliotecaFerreria.bussiness.model;
 
-public class EstanteriaDTO {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-    private Integer estanteriaID;
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class EstanteriaDTO {
+    private int estanteriaID;
     private String nombre;
 
-    public EstanteriaDTO() {}
-
-    public EstanteriaDTO(Integer estanteriaID, String nombre) {
-        this.estanteriaID = estanteriaID;
-        this.nombre = nombre;
-    }
-
-    public Integer getEstanteriaID() {
-        return estanteriaID;
-    }
-
-    public void setEstanteriaID(Integer estanteriaID) {
-        this.estanteriaID = estanteriaID;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public static class EstanteriaMapper {
-        public static EstanteriaDTO toDTO(Estanteria estanteria) {
-            return new EstanteriaDTO(
-                    estanteria.getEstanteriaID(),
-                    estanteria.getNombre()
-            );
-        }
+    public static EstanteriaDTO fromEntity(Estanteria estanteria) {
+        return new EstanteriaDTO(
+                estanteria.getEstanteriaID(),
+                estanteria.getNombre()
+        );
     }
 }

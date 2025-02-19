@@ -18,22 +18,23 @@ public class EstanteriaServicesImpl implements EstanteriaServices {
     }
 
     @Override
-    public Integer create(Estanteria estanteria) {
+    public int create(Estanteria estanteria) {
         return estanteriaRepository.save(estanteria).getEstanteriaID();
     }
 
     @Override
-    public Optional<Estanteria> read(Integer id) {
+    public Optional<Estanteria> read(int id) {
         return estanteriaRepository.findById(id);
     }
 
     @Override
     public void update(Estanteria estanteria) {
+        // Se asume que el objeto 'estanteria' ya contiene el id correcto.
         estanteriaRepository.save(estanteria);
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(int id) {
         estanteriaRepository.deleteById(id);
     }
 
