@@ -44,7 +44,7 @@ public class LibroController {
     public ResponseEntity<List<LibroDTO>> getAll() {
         List<LibroDTO> libroDTOs = libroServices.getAll().stream()
                 .map(LibroDTO.LibroMapper::toDTO)
-                .collect(Collectors.toList());
+                .toList();
         return ResponseEntity.ok(libroDTOs);
     }
 

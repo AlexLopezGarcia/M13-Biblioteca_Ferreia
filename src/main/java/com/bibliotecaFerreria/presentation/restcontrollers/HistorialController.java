@@ -39,7 +39,7 @@ public class HistorialController {
     public ResponseEntity<List<HistorialDTO>> getAll() {
         List<HistorialDTO> historialDTOs = historialServices.getAll().stream()
                 .map(HistorialDTO.HistorialMapper::toDTO)
-                .collect(Collectors.toList());
+                .toList();
         return ResponseEntity.ok(historialDTOs);
     }
 
