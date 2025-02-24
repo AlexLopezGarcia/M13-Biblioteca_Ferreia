@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * @author alexl
+ * @date 07/02/2025
+ */
 @Service
 public class HistorialServicesImpl implements HistorialServices {
     private final HistorialRepository historialRepository;

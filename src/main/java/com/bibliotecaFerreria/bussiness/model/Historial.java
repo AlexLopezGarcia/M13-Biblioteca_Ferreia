@@ -5,6 +5,17 @@ import java.io.Serializable;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import lombok.*;
+
+/**
+ * @author alexl
+ * @date 07/02/2025
+ */
+@Setter
+@Getter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 
 @Entity
 @Table(name = "historial")
@@ -22,37 +33,4 @@ public class Historial implements Serializable {
 
     @Column(name = "isbn", nullable = false, length = 50)
     private String isbn;
-
-    // Constructors
-    public Historial() {}
-
-    public Historial(Usuario usuario, String isbn) {
-        this.usuario = usuario;
-        this.isbn = isbn;
-    }
-
-    // Getters and Setters
-    public Long getHistorialId() {
-        return historialId;
-    }
-
-    public void setHistorialId(Long historialId) {
-        this.historialId = historialId;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
 }

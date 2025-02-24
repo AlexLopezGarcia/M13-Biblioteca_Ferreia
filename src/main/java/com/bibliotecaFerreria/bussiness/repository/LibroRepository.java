@@ -8,6 +8,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * @author alexl
+ * @date 07/02/2025
+ */
 @Repository
 public interface LibroRepository extends JpaRepository<Libro, String> {
     List<Libro> findByAutor(String autor);
