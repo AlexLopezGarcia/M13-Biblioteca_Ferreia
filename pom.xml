@@ -8,7 +8,7 @@
 		<version>3.4.0</version>
 		<relativePath/> <!-- lookup parent from repository, hola mundo -->
 	</parent>
-	<groupId>com.bibliotecaFerreria</groupId>
+	<groupId>cat.ferreria.api</groupId>
 	<artifactId>biblioteca</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>libro</name>
