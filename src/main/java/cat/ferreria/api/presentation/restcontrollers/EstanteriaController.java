@@ -1,8 +1,8 @@
-package com.bibliotecaFerreria.presentation.restcontrollers;
+package cat.ferreria.api.presentation.restcontrollers;
 
-import com.bibliotecaFerreria.bussiness.model.Estanteria;
-import com.bibliotecaFerreria.bussiness.model.EstanteriaDTO;
-import com.bibliotecaFerreria.bussiness.services.EstanteriaServicesImpl;
+import cat.ferreria.api.bussiness.model.Estanteria;
+import cat.ferreria.api.bussiness.model.EstanteriaDTO;
+import cat.ferreria.api.bussiness.services.EstanteriaServicesImpl;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

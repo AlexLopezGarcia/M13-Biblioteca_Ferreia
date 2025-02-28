@@ -1,4 +1,4 @@
-package com.bibliotecaFerreria.bussiness.model;
+package cat.ferreria.api.bussiness.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
