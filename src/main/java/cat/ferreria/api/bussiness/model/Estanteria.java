@@ -20,5 +20,4 @@ public class Estanteria {
     @Column(nullable = false)
     private String nombre;
 
-
 }
