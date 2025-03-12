@@ -38,4 +38,13 @@ public class EstanteDTO {
                 ", libro=" + libro +
                 '}';
     }
+
+    public static class EstanteMapper {
+        public static EstanteDTO toDTO (Estante estante){
+            return new EstanteDTO(
+                    estante.getEstanteID(),
+                    estante.getLibro()
+            );
+        }
+    }
 }
