@@ -2,13 +2,12 @@ package cat.ferreria.api.presentation.restcontrollers;
 
 import cat.ferreria.api.bussiness.model.Estanteria;
 import cat.ferreria.api.bussiness.model.EstanteriaDTO;
-import cat.ferreria.api.bussiness.services.EstanteriaServicesImpl;
+import cat.ferreria.api.bussiness.services.EstanteriaServices;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,8 +17,7 @@ import java.util.stream.Collectors;
 public class EstanteriaController {
 
     @Autowired
-    private EstanteriaServicesImpl estanteriaServices;
-
+    private EstanteriaServices estanteriaServices;
 
     @GetMapping
     public ResponseEntity<List<EstanteriaDTO>> getAll() {
@@ -30,7 +28,6 @@ public class EstanteriaController {
         return ResponseEntity.ok(dtos);
     }
 
-
     @GetMapping("/{id}")
     public ResponseEntity<EstanteriaDTO> read(@PathVariable int id) {
         return estanteriaServices.read(id)
@@ -38,14 +35,12 @@ public class EstanteriaController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-
     @PostMapping
     public ResponseEntity<String> create(@RequestBody Estanteria estanteria) {
         int id = estanteriaServices.create(estanteria);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body("Estantería creada con ID: " + id);
     }
-
 
     @PutMapping("/{id}")
     public ResponseEntity<String> update(@PathVariable int id, @RequestBody Estanteria estanteria) {
@@ -57,7 +52,6 @@ public class EstanteriaController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body("Estantería no encontrada");
     }
-
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable int id) {

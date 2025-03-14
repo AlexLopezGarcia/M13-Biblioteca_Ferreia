@@ -29,7 +29,6 @@ public class EstanteriaServicesImpl implements EstanteriaServices {
 
     @Override
     public void update(Estanteria estanteria) {
-        // Se asume que el objeto 'estanteria' ya contiene el id correcto.
         estanteriaRepository.save(estanteria);
     }
 
