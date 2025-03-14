@@ -3,89 +3,74 @@ package cat.ferreria.api.presentation.restcontrollers;
  * @author Ruben
  * @date 07/02/2025
  */
-import java.net.URI;
-import java.util.List;
-import java.util.Optional;
-
+import cat.ferreria.api.bussiness.model.Usuario;
+import cat.ferreria.api.bussiness.model.UsuarioDTO;
 import cat.ferreria.api.bussiness.services.UsuarioServices;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
 
-import cat.ferreria.api.bussiness.model.Usuario;
-import cat.ferreria.api.bussiness.model.UsuarioDTO;
-import cat.ferreria.api.backend.config.ErrorResponse;
-import cat.ferreria.api.bussiness.services.*;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/usuarios")
+@Tag(name = "Usuarios", description = "Gestión de usuarios")
 public class UsuarioController {
 
     @Autowired
     private UsuarioServices usuarioServices;
 
-    // CREATE
-    @PostMapping
-    public ResponseEntity<?> create(@RequestBody Usuario usuario) {
-        String dni;
-
-        try {
-            dni = usuarioServices.create(usuario);
-            URI uri = UriComponentsBuilder.fromPath("/usuarios/{dni}").buildAndExpand(dni).toUri();
-            return ResponseEntity.created(uri).build();
-        } catch (Exception e) {
-            ErrorResponse errorResponse = new ErrorResponse(HttpStatus.BAD_REQUEST.value(), "Error al crear el usuario: " + e.getMessage());
-            return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
-        }
-    }
-
-    // READ
-    @GetMapping("/{dni}")
-    public ResponseEntity<?> read(@PathVariable("dni") String dni) {
-        Optional<Usuario> optional = usuarioServices.read(dni);
-
-        if (optional.isEmpty()) {
-            ErrorResponse errorResponse = new ErrorResponse(HttpStatus.NOT_FOUND.value(), "No se encuentra el usuario con DNI " + dni);
-            return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
-        }
-
-        return ResponseEntity.ok(optional.get());
-    }
-
-    // UPDATE
-    @PutMapping("/{dni}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<?> update(@PathVariable String dni, @RequestBody Usuario usuario) {
-        try {
-            usuario.setDni(dni);
-            usuarioServices.update(usuario);
-            return ResponseEntity.noContent().build();
-        } catch (IllegalStateException e) {
-            ErrorResponse errorResponse = new ErrorResponse(HttpStatus.BAD_REQUEST.value(), "No se encuentra el usuario con DNI " + dni + ". No se ha podido actualizar.");
-            return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
-        }
-    }
-
-    // DELETE
-    @DeleteMapping("/{dni}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<?> delete(@PathVariable String dni) {
-        try {
-            usuarioServices.delete(dni);
-            return ResponseEntity.noContent().build();
-        } catch (IllegalStateException e) {
-            ErrorResponse errorResponse = new ErrorResponse(HttpStatus.BAD_REQUEST.value(), "No se encuentra el usuario con DNI [" + dni + "]. No se ha podido eliminar.");
-            return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
-        }
-    }
-
-    // GET ALL
+    // Obtener todos los usuarios
     @GetMapping
     public ResponseEntity<List<UsuarioDTO>> getAll() {
         List<UsuarioDTO> usuarios = usuarioServices.getAll();
-        return new ResponseEntity<>(usuarios, HttpStatus.OK);
+        return ResponseEntity.ok(usuarios);
+    }
+
+    // Obtener un usuario por DNI
+    @GetMapping("/{dni}")
+    public ResponseEntity<?> read(@PathVariable String dni) {
+        return usuarioServices.read(dni)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PostMapping
+    public ResponseEntity<String> create(@RequestBody Usuario usuario) {
+        try {
+            String dni = usuarioServices.create(usuario);
+            return ResponseEntity.status(HttpStatus.CREATED)
+                    .body("Usuario creado con DNI: " + dni);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("Error al crear el usuario: " + e.getMessage());
+        }
+    }
+
+    @PutMapping("/{dni}")
+    public ResponseEntity<String> update(@PathVariable String dni, @RequestBody Usuario usuario) {
+        if (usuarioServices.read(dni).isPresent()) {
+            usuario.setDni(dni);
+            usuarioServices.update(usuario);
+            return ResponseEntity.ok("Usuario actualizado correctamente.");
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body("Usuario no encontrado.");
+    }
+
+    @DeleteMapping("/{dni}")
+    public ResponseEntity<String> delete(@PathVariable String dni) {
+        if (usuarioServices.read(dni).isPresent()) {
+            usuarioServices.delete(dni);
+            return ResponseEntity.ok("Usuario eliminado correctamente.");
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body("Usuario no encontrado.");
     }
 }
+
 
