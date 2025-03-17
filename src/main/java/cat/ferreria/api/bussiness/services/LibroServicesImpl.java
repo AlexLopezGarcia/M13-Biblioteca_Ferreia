@@ -13,8 +13,7 @@ import java.util.Optional;
  * @date 07/02/2025
  */
 @Service
-public class
-LibroServicesImpl implements LibroServices {
+public class LibroServicesImpl implements LibroServices {
     private final LibroRepository libroRepository;
 
     @Autowired
