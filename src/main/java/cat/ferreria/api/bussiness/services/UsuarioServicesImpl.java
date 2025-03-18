@@ -5,7 +5,6 @@ package cat.ferreria.api.bussiness.services;
  */
 
 import cat.ferreria.api.bussiness.model.*;
-import cat.ferreria.api.bussiness.services.*;
 import cat.ferreria.api.bussiness.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,10 +16,10 @@ import java.util.stream.Collectors;
 @Service
 public class UsuarioServicesImpl implements UsuarioServices {
 
-    private final UsuarioRepositori usuarioRepository;
+    private final UsuarioRepository usuarioRepository;
 
     @Autowired
-    public UsuarioServicesImpl(UsuarioRepositori usuarioRepository) {
+    public UsuarioServicesImpl(UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
     }
 
