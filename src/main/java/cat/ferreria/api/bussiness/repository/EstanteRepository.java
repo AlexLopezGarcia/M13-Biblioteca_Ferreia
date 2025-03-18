@@ -13,10 +13,10 @@ import java.util.List;
  * @date 14/03/2025
  */
 @Repository
-public interface EstanteRepository extends JpaRepository<Estante, Integer>{
-    List<Estante> findByEstante(String estante);
-    List<Estante> findByEstanteria(String estanteria);
+public interface EstanteRepository extends JpaRepository<Estante, Long> {
+    List<Estante> findByLibroIsbn(String isbn);
+    List<Estante> findByEstanteriaEstanteriaId(Long estanteriaId);
 
-    @Query("SELECT l FROM Estante l WHERE l.libro.titulo LIKE %:keyword%")
+    @Query("SELECT e FROM Estante e WHERE e.libro.titulo LIKE %:keyword%")
     List<Estante> findByTitleContaining(@Param("keyword") String keyword);
 }

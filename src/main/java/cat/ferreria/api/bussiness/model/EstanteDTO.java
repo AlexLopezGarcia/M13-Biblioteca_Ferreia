@@ -11,22 +11,22 @@ import lombok.*;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class EstanteDTO {
-    private int estante_id;
+    private Long estante_id;
     private String isbn;
-    private int estanteria_id;
+    private Long estanteria_id;
     private LibroDTO libro;
     private EstanteriaDTO estanteria;
 
     public static class EstanteMapper {
         public static EstanteDTO toDTO(Estante estante) {
+            Estanteria estanteria = estante.getEstanteria();
             return new EstanteDTO(
                     estante.getEstante_id(),
-                    estante.getIsbn(),
-                    estante.getEstanteria_id(),
+                    estante.getLibro().getIsbn(),
+                    estanteria != null ? estanteria.getEstanteriaId() : null,
                     LibroDTO.LibroMapper.toDTO(estante.getLibro()),
-                    EstanteriaDTO.EstanteriaMapper.toDTO(estante.getEstanteria())
+                    estanteria != null ? EstanteriaDTO.EstanteriaMapper.toDTO(estanteria) : null
             );
         }
     }

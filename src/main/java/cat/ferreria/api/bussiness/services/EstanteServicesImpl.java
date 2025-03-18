@@ -1,6 +1,7 @@
 package cat.ferreria.api.bussiness.services;
 
 import cat.ferreria.api.bussiness.model.Estante;
+import cat.ferreria.api.bussiness.model.EstanteDTO;
 import cat.ferreria.api.bussiness.repository.EstanteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,27 +23,28 @@ public class EstanteServicesImpl implements EstanteServices {
     }
 
     @Override
-    public String create(Estante estante) {
-        return estanteRepository.save(estante).getEstante_id();
+    public EstanteDTO create(Estante estante) {
+        Estante savedEstante = estanteRepository.save(estante);
+        return EstanteDTO.EstanteMapper.toDTO(savedEstante);
     }
 
     @Override
-    public Optional<Estante> read(String id) {
-        return Optional.empty();
+    public Optional<Estante> read(Long id) {
+        return estanteRepository.findById(id);
     }
 
     @Override
     public void update(Estante estante) {
-
+        estanteRepository.save(estante);
     }
 
     @Override
-    public void delete(String id) {
-
+    public void delete(Long id) {
+        estanteRepository.deleteById(id);
     }
 
     @Override
     public List<Estante> getAll() {
-        return List.of();
+        return estanteRepository.findAll();
     }
 }
