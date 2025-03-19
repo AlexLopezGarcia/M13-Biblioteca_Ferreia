@@ -13,8 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -39,6 +37,7 @@ public class UsuarioController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    // Crear un nuevo usuario
     @PostMapping
     public ResponseEntity<String> create(@RequestBody Usuario usuario) {
         try {
@@ -51,6 +50,7 @@ public class UsuarioController {
         }
     }
 
+    // Actualizar un usuario
     @PutMapping("/{dni}")
     public ResponseEntity<String> update(@PathVariable String dni, @RequestBody Usuario usuario) {
         if (usuarioServices.read(dni).isPresent()) {
@@ -62,6 +62,7 @@ public class UsuarioController {
                 .body("Usuario no encontrado.");
     }
 
+    // Eliminar un usuario
     @DeleteMapping("/{dni}")
     public ResponseEntity<String> delete(@PathVariable String dni) {
         if (usuarioServices.read(dni).isPresent()) {
@@ -71,6 +72,16 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body("Usuario no encontrado.");
     }
+
+    @PostMapping("/sesion")
+    public ResponseEntity<String> iniciarSesion(@RequestParam String correoElectronico, @RequestParam String contrasenya) {
+        String resultadoLogin = usuarioServices.iniciarSesion(correoElectronico, contrasenya);
+
+        return resultadoLogin.equals("Sesión iniciada con éxito")
+                ? ResponseEntity.ok(resultadoLogin)
+                : ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(resultadoLogin);
+    }
 }
+
 
 
