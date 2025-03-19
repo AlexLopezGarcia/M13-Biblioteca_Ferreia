@@ -1,9 +1,8 @@
 package cat.ferreria.api.presentation.restcontrollers;
 
-import cat.ferreria.api.bussiness.model.Estante;
-import cat.ferreria.api.bussiness.model.EstanteDTO;
+import cat.ferreria.api.bussiness.model.clazz.Estante;
+import cat.ferreria.api.bussiness.model.dtos.EstanteDTO;
 import cat.ferreria.api.bussiness.services.EstanteServices;
-import cat.ferreria.api.bussiness.services.EstanteServicesImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author alexl

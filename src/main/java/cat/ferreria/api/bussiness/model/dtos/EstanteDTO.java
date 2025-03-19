@@ -1,5 +1,7 @@
-package cat.ferreria.api.bussiness.model;
+package cat.ferreria.api.bussiness.model.dtos;
 
+import cat.ferreria.api.bussiness.model.clazz.Estante;
+import cat.ferreria.api.bussiness.model.clazz.Estanteria;
 import lombok.*;
 
 /**

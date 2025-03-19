@@ -1,7 +1,7 @@
 package cat.ferreria.api.bussiness.services;
 
-import cat.ferreria.api.bussiness.model.Estante;
-import cat.ferreria.api.bussiness.model.EstanteDTO;
+import cat.ferreria.api.bussiness.model.clazz.Estante;
+import cat.ferreria.api.bussiness.model.dtos.EstanteDTO;
 
 import java.util.List;
 import java.util.Optional;

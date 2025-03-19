@@ -1,4 +1,4 @@
-package cat.ferreria.api.bussiness.model;
+package cat.ferreria.api.bussiness.model.clazz;
 /**
  * @author Ruben
  * @date 18/02/2025
