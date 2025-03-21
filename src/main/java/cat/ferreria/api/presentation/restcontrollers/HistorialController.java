@@ -1,7 +1,7 @@
 package cat.ferreria.api.presentation.restcontrollers;
 
-import cat.ferreria.api.bussiness.model.Historial;
-import cat.ferreria.api.bussiness.model.HistorialDTO;
+import cat.ferreria.api.bussiness.model.clazz.Historial;
+import cat.ferreria.api.bussiness.model.dtos.HistorialDTO;
 import cat.ferreria.api.bussiness.services.HistorialServicesImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

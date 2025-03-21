@@ -1,4 +1,4 @@
-package cat.ferreria.api.bussiness.model;
+package cat.ferreria.api.bussiness.model.clazz;
 
 import jakarta.persistence.*;
 import lombok.*;

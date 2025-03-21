@@ -1,6 +1,6 @@
 package cat.ferreria.api.bussiness.services;
 
-import cat.ferreria.api.bussiness.model.Estanteria;
+import cat.ferreria.api.bussiness.model.clazz.Estanteria;
 
 import java.util.List;
 import java.util.Optional;

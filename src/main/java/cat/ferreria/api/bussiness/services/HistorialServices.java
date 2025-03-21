@@ -1,6 +1,6 @@
 package cat.ferreria.api.bussiness.services;
 
-import cat.ferreria.api.bussiness.model.Historial;
+import cat.ferreria.api.bussiness.model.clazz.Historial;
 
 import java.util.List;
 import java.util.Optional;

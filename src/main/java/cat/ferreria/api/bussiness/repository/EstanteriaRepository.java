@@ -1,6 +1,6 @@
 package cat.ferreria.api.bussiness.repository;
 
-import cat.ferreria.api.bussiness.model.Estanteria;
+import cat.ferreria.api.bussiness.model.clazz.Estanteria;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
