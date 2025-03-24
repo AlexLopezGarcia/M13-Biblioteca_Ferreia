@@ -33,12 +33,6 @@ public class UsuarioServicesImpl implements UsuarioServices {
             throw new IllegalStateException("El usuario con DNI " + usuario.getDni() + " ya existe.");
         }
 
-        if (usuario.getHistorial() != null) {
-            for (Historial h : usuario.getHistorial()) {
-                h.setUsuario(usuario); // Asociamos el historial con el usuario
-            }
-        }
-
         usuarioRepository.save(usuario);
         return usuario.getDni();
     }
@@ -52,12 +46,6 @@ public class UsuarioServicesImpl implements UsuarioServices {
     public void update(Usuario usuario) {
         if (!usuarioRepository.existsById(usuario.getDni())) {
             throw new IllegalStateException("El usuario con DNI " + usuario.getDni() + " no existe.");
-        }
-
-        if (usuario.getHistorial() != null) {
-            for (Historial h : usuario.getHistorial()) {
-                h.setUsuario(usuario);
-            }
         }
 
         usuarioRepository.save(usuario);
@@ -80,13 +68,8 @@ public class UsuarioServicesImpl implements UsuarioServices {
     }
 
     private UsuarioDTO mapToDTO(Usuario usuario) {
-        List<HistorialDTO> historialDTOList = usuario.getHistorial() != null
-                ? usuario.getHistorial().stream()
-                .map(HistorialDTO.HistorialMapper::toDTO)
-                .collect(Collectors.toList())
-                : List.of();
 
-        return new UsuarioDTO(usuario.getDni(), usuario.getNombre(), usuario.getCorreoElectronico());
+        return new UsuarioDTO(usuario.getDni(), usuario.getNombre(), usuario.getContrasenya() ,usuario.getCorreoElectronico());
     }
 }
 
