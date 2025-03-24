@@ -2,7 +2,7 @@ package cat.ferreria.api.presentation.restcontrollers;
 
 import cat.ferreria.api.bussiness.model.clazz.Estante;
 import cat.ferreria.api.bussiness.model.dtos.EstanteDTO;
-import cat.ferreria.api.bussiness.services.EstanteServices;
+import cat.ferreria.api.bussiness.services.interfaces.EstanteServices;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;

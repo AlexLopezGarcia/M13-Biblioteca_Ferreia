@@ -2,7 +2,7 @@ package cat.ferreria.api.presentation.restcontrollers;
 
 import cat.ferreria.api.bussiness.model.clazz.Estanteria;
 import cat.ferreria.api.bussiness.model.dtos.EstanteriaDTO;
-import cat.ferreria.api.bussiness.services.EstanteriaServices;
+import cat.ferreria.api.bussiness.services.interfaces.EstanteriaServices;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

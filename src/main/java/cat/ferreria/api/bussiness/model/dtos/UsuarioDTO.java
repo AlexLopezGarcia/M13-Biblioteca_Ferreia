@@ -15,6 +15,7 @@ import lombok.*;
 public class UsuarioDTO {
     private String dni;
     private String nombre;
+    private String contrasenya;
     private String correoElectronico;
 
     public static class UsuarioMapper {
@@ -22,6 +23,7 @@ public class UsuarioDTO {
             return new UsuarioDTO(
                     usuario.getDni(),
                     usuario.getNombre(),
+                    usuario.getContrasenya(),
                     usuario.getCorreoElectronico()
             );
         }

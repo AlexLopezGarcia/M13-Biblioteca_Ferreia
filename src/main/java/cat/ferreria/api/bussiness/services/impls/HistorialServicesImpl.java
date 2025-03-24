@@ -1,7 +1,8 @@
-package cat.ferreria.api.bussiness.services;
+package cat.ferreria.api.bussiness.services.impls;
 
 import cat.ferreria.api.bussiness.model.clazz.Historial;
 import cat.ferreria.api.bussiness.repository.HistorialRepository;
+import cat.ferreria.api.bussiness.services.interfaces.HistorialServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

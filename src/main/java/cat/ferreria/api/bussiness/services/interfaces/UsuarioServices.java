@@ -1,4 +1,4 @@
-package cat.ferreria.api.bussiness.services;
+package cat.ferreria.api.bussiness.services.interfaces;
 /**
  * @author Ruben
  * @date 07/02/2025
