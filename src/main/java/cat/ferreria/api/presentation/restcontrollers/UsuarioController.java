@@ -5,7 +5,7 @@ package cat.ferreria.api.presentation.restcontrollers;
  */
 import cat.ferreria.api.bussiness.model.clazz.Usuario;
 import cat.ferreria.api.bussiness.model.dtos.UsuarioDTO;
-import cat.ferreria.api.bussiness.services.UsuarioServices;
+import cat.ferreria.api.bussiness.services.interfaces.UsuarioServices;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

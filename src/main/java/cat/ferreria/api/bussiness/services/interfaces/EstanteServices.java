@@ -1,4 +1,4 @@
-package cat.ferreria.api.bussiness.services;
+package cat.ferreria.api.bussiness.services.interfaces;
 
 import cat.ferreria.api.bussiness.model.clazz.Estante;
 import cat.ferreria.api.bussiness.model.dtos.EstanteDTO;

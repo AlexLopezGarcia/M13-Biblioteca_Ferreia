@@ -1,14 +1,14 @@
 package cat.ferreria.api.bussiness.model.clazz;
-/**
- * @author Ruben
- * @date 18/02/2025
- */
+
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
-import java.util.List;
 
+/**
+ * @author Ruben
+ * @date 18/02/2025
+ */
 @Getter
 @Setter
 @ToString
@@ -29,12 +29,7 @@ public class Usuario implements Serializable {
     @Column(nullable = false)
     private String contrasenya;
 
-    @Column(name = "correo_electronico", nullable = false, unique = true)
+    @Column(name = "correo_electronico", nullable = false)
     private String correoElectronico;
-    
-    @ToString.Exclude
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-    private List<Historial> historial;
-    
 
 }

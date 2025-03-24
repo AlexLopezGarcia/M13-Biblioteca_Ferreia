@@ -24,9 +24,6 @@ public class Estanteria implements Serializable {
     @Column(name = "estanteria_id")
     private Long estanteriaId;
 
-    @Column(name = "estante_id")
-    private Long estanteId;
-
     @Column(nullable = false)
     private String nombre;
 }

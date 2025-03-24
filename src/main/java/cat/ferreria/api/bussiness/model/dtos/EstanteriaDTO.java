@@ -16,14 +16,12 @@ import lombok.*;
 @NoArgsConstructor
 public class EstanteriaDTO {
     private Long estanteriaId;
-    private Long estanteId;
     private String nombre;
 
     public static class EstanteriaMapper {
         public static EstanteriaDTO toDTO(Estanteria estanteria) {
             return new EstanteriaDTO(
                     estanteria.getEstanteriaId(),
-                    estanteria.getEstanteId(),
                     estanteria.getNombre()
             );
         }
