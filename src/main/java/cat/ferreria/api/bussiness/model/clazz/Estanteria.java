@@ -1,4 +1,4 @@
-package cat.ferreria.api.bussiness.model;
+package cat.ferreria.api.bussiness.model.clazz;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -23,9 +23,6 @@ public class Estanteria implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "estanteria_id")
     private Long estanteriaId;
-
-    @Column(name = "estante_id")
-    private Long estanteId;
 
     @Column(nullable = false)
     private String nombre;

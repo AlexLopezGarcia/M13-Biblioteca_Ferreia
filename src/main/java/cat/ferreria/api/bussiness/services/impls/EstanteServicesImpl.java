@@ -1,8 +1,9 @@
-package cat.ferreria.api.bussiness.services;
+package cat.ferreria.api.bussiness.services.impls;
 
-import cat.ferreria.api.bussiness.model.Estante;
-import cat.ferreria.api.bussiness.model.EstanteDTO;
+import cat.ferreria.api.bussiness.model.clazz.Estante;
+import cat.ferreria.api.bussiness.model.dtos.EstanteDTO;
 import cat.ferreria.api.bussiness.repository.EstanteRepository;
+import cat.ferreria.api.bussiness.services.interfaces.EstanteServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

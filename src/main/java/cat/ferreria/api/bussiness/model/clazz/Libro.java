@@ -1,4 +1,4 @@
-package cat.ferreria.api.bussiness.model;
+package cat.ferreria.api.bussiness.model.clazz;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
@@ -23,19 +23,24 @@ public class Libro implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "libro_id")
+    private Long libroId;
+
     @Column(name = "isbn")
     private String isbn;
 
-    @Column(nullable = false)
+    @Column(name = "titulo", nullable = false)
     private String titulo;
 
-    @Column(nullable = false)
+    @Column(name = "autor", nullable = false)
     private String autor;
 
-    @Column
+    @Column(name = "categoria")
     private String categoria;
 
-    @Column
-    private Integer cantidad;
+    @ManyToOne
+    @JoinColumn(name = "estante_id")
+    private Estante estante;
 
 }

@@ -1,7 +1,8 @@
-package cat.ferreria.api.bussiness.model;
+package cat.ferreria.api.bussiness.model.clazz;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -23,14 +24,22 @@ public class Historial implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "historial_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "historial_id")
     private Long historialId;
 
     @ManyToOne
     @JoinColumn(name = "dni", nullable = false)
     private Usuario usuario;
 
-    @Column(name = "isbn", nullable = false, length = 50)
-    private String isbn;
+    @ManyToOne
+    @JoinColumn(name = "libro_id", nullable = false)
+    private Libro libro;
+
+    @Column(name = "fecha_prestamo")
+    private LocalDateTime fechaPrestamo;
+
+    @Column(name = "fecha_devolucion")
+    private LocalDateTime fechaDevolucion;
+
 }

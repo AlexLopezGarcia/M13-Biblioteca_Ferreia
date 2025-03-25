@@ -1,6 +1,6 @@
-package cat.ferreria.api.bussiness.services;
+package cat.ferreria.api.bussiness.services.interfaces;
 
-import cat.ferreria.api.bussiness.model.Libro;
+import cat.ferreria.api.bussiness.model.clazz.Libro;
 
 import java.util.List;
 import java.util.Optional;

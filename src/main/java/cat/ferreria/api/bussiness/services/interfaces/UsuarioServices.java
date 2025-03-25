@@ -1,10 +1,10 @@
-package cat.ferreria.api.bussiness.services;
+package cat.ferreria.api.bussiness.services.interfaces;
 /**
  * @author Ruben
  * @date 07/02/2025
  */
-import cat.ferreria.api.bussiness.model.Usuario;
-import cat.ferreria.api.bussiness.model.UsuarioDTO;
+import cat.ferreria.api.bussiness.model.clazz.Usuario;
+import cat.ferreria.api.bussiness.model.dtos.UsuarioDTO;
 
 import java.util.List;
 import java.util.Optional;

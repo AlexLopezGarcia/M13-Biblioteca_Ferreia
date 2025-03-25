@@ -1,4 +1,4 @@
-package cat.ferreria.api.bussiness.model;
+package cat.ferreria.api.bussiness.model.clazz;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
@@ -25,10 +25,6 @@ public class Estante implements Serializable {
     private Long estante_id;
 
     @ManyToOne
-    @JoinColumn(name = "isbn", nullable = false)
-    private Libro libro;
-
-    @ManyToOne
-    @JoinColumn(name = "estanteria_id")
+    @JoinColumn(name = "estanteria_id", nullable = false)
     private Estanteria estanteria;
 }

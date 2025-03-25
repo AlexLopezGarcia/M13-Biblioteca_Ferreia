@@ -1,8 +1,8 @@
 package cat.ferreria.api.presentation.restcontrollers;
 
-import cat.ferreria.api.bussiness.model.Estanteria;
-import cat.ferreria.api.bussiness.model.EstanteriaDTO;
-import cat.ferreria.api.bussiness.services.EstanteriaServices;
+import cat.ferreria.api.bussiness.model.clazz.Estanteria;
+import cat.ferreria.api.bussiness.model.dtos.EstanteriaDTO;
+import cat.ferreria.api.bussiness.services.interfaces.EstanteriaServices;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -45,7 +45,6 @@ public class EstanteriaController {
         List<EstanteriaDTO> estanteriaDTOs = estanteriaServices.getAll().stream()
                 .map(estanteria -> new EstanteriaDTO(
                         estanteria.getEstanteriaId(),
-                        estanteria.getEstanteId(),
                         estanteria.getNombre()
                 ))
                 .collect(Collectors.toList());
@@ -68,7 +67,6 @@ public class EstanteriaController {
         return estanteriaServices.read(estanteriaId)
                 .map(estanteria -> ResponseEntity.ok(new EstanteriaDTO(
                         estanteria.getEstanteriaId(),
-                        estanteria.getEstanteId(),
                         estanteria.getNombre()
                 )))
                 .orElse(ResponseEntity.notFound().build());

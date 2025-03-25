@@ -1,7 +1,8 @@
-package cat.ferreria.api.bussiness.services;
+package cat.ferreria.api.bussiness.services.impls;
 
-import cat.ferreria.api.bussiness.model.Estanteria;
+import cat.ferreria.api.bussiness.model.clazz.Estanteria;
 import cat.ferreria.api.bussiness.repository.EstanteriaRepository;
+import cat.ferreria.api.bussiness.services.interfaces.EstanteriaServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

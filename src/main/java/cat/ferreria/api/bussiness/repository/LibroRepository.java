@@ -1,6 +1,6 @@
 package cat.ferreria.api.bussiness.repository;
 
-import cat.ferreria.api.bussiness.model.Libro;
+import cat.ferreria.api.bussiness.model.clazz.Libro;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

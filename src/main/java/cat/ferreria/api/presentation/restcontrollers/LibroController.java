@@ -1,8 +1,8 @@
 package cat.ferreria.api.presentation.restcontrollers;
 
-import cat.ferreria.api.bussiness.model.Libro;
-import cat.ferreria.api.bussiness.model.LibroDTO;
-import cat.ferreria.api.bussiness.services.LibroServicesImpl;
+import cat.ferreria.api.bussiness.model.clazz.Libro;
+import cat.ferreria.api.bussiness.model.dtos.LibroDTO;
+import cat.ferreria.api.bussiness.services.impls.LibroServicesImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

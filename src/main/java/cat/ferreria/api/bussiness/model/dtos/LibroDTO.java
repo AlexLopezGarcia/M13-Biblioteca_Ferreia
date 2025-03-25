@@ -1,5 +1,6 @@
-package cat.ferreria.api.bussiness.model;
+package cat.ferreria.api.bussiness.model.dtos;
 
+import cat.ferreria.api.bussiness.model.clazz.Libro;
 import lombok.*;
 
 /**
@@ -13,21 +14,23 @@ import lombok.*;
 @NoArgsConstructor
 
 public class LibroDTO {
+    private Long libro_id;
     private String isbn;
     private String titulo;
     private String autor;
     private String categoria;
-    private Integer cantidad;
+    private Long estante_id;
 
     public static class LibroMapper {
         public static LibroDTO toDTO(Libro libro) {
             return new LibroDTO(
+                    libro.getLibroId(),
                     libro.getIsbn(),
                     libro.getTitulo(),
                     libro.getAutor(),
                     libro.getCategoria(),
-                    libro.getCantidad()
+                    libro.getEstante().getEstante_id()
             );
         }
     }
-    }
+}

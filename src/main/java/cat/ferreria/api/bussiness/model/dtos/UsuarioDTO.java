@@ -1,5 +1,6 @@
-package cat.ferreria.api.bussiness.model;
+package cat.ferreria.api.bussiness.model.dtos;
 
+import cat.ferreria.api.bussiness.model.clazz.Usuario;
 import lombok.*;
 
 /**
@@ -14,6 +15,7 @@ import lombok.*;
 public class UsuarioDTO {
     private String dni;
     private String nombre;
+    private String contrasenya;
     private String correoElectronico;
 
     public static class UsuarioMapper {
@@ -21,6 +23,7 @@ public class UsuarioDTO {
             return new UsuarioDTO(
                     usuario.getDni(),
                     usuario.getNombre(),
+                    usuario.getContrasenya(),
                     usuario.getCorreoElectronico()
             );
         }

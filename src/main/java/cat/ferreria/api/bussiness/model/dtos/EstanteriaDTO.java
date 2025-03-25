@@ -1,5 +1,6 @@
-package cat.ferreria.api.bussiness.model;
+package cat.ferreria.api.bussiness.model.dtos;
 
+import cat.ferreria.api.bussiness.model.clazz.Estanteria;
 import lombok.*;
 
 /**
@@ -15,14 +16,12 @@ import lombok.*;
 @NoArgsConstructor
 public class EstanteriaDTO {
     private Long estanteriaId;
-    private Long estanteId;
     private String nombre;
 
     public static class EstanteriaMapper {
         public static EstanteriaDTO toDTO(Estanteria estanteria) {
             return new EstanteriaDTO(
                     estanteria.getEstanteriaId(),
-                    estanteria.getEstanteId(),
                     estanteria.getNombre()
             );
         }
