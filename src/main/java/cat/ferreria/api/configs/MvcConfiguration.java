@@ -17,7 +17,6 @@ public class MvcConfiguration implements WebMvcConfigurer {
     @Bean
     public LocaleResolver localeResolver() {
         SessionLocaleResolver slr = new SessionLocaleResolver();
-        //slr.setDefaultLocale(Locale.US);
         slr.setDefaultLocale(new Locale("es"));
         return slr;
     }
@@ -33,6 +32,6 @@ public class MvcConfiguration implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(localeChangeInterceptor());
     }
-    /* END LANGUAGUE CONFIGURATION */
 
+    /* END LANGUAGUE CONFIGURATION */
 }
