@@ -43,4 +43,7 @@ public class Libro implements Serializable {
     @JoinColumn(name = "estante_id")
     private Estante estante;
 
+    @Column(name = "estado_uso")
+    private boolean estado_uso;
+
 }
