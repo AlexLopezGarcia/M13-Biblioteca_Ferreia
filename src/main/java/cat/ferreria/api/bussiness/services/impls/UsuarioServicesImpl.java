@@ -67,9 +67,22 @@ public class UsuarioServicesImpl implements UsuarioServices {
                 .collect(Collectors.toList());
     }
 
+    public String iniciarSesion(String correoElectronico, String contrasenya) {
+        Optional<Usuario> usuario = usuarioRepository.findByCorreoElectronicoAndContrasenya(correoElectronico, contrasenya);
+        String respuesta;
+
+        if (usuario.isPresent()) {
+            respuesta = "Sesión iniciada con éxito";
+        } else {
+            respuesta = "Credenciales incorrectas";
+        }
+        return respuesta;
+    }
+
     private UsuarioDTO mapToDTO(Usuario usuario) {
 
         return new UsuarioDTO(usuario.getDni(), usuario.getNombre(), usuario.getContrasenya() ,usuario.getCorreoElectronico());
     }
 }
+
 
