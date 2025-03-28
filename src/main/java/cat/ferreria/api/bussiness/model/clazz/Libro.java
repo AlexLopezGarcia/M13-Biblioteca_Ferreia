@@ -6,6 +6,7 @@ import jakarta.persistence.Id;
 import lombok.*;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -47,5 +48,10 @@ public class Libro implements Serializable {
     @Column(name = "estado_uso")
     private boolean estadoUso;
 
+    @Column(name = "fecha_devolucion")
+    private LocalDate fechaDevolucion;
+
+    @Column(name = "fecha_prestamo")
+    private LocalDate fechaPrestamo;
 
 }
