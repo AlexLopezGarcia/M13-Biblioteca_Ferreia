@@ -1,4 +1,4 @@
-package cat.ferreria.api.bussiness.services;
+package cat.ferreria.api.bussiness.services.interfaces;
 
 import cat.ferreria.api.bussiness.model.clazz.Estanteria;
 

@@ -18,6 +18,4 @@ public interface EstanteriaRepository extends JpaRepository<Estanteria, Long> {
     // Busca estanterías cuyo nombre contenga la cadena dada, ignorando mayúsculas/minúsculas
     List<Estanteria> findByNombreContainingIgnoreCase(String nombre);
 
-    // Busca estanterías que tengan un estante con el ID especificado
-    List<Estanteria> findByEstanteId(Long estanteId);
 }
