@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -24,4 +25,13 @@ public interface LibroRepository extends JpaRepository<Libro, String> {
 
     @Query("SELECT l FROM Libro l WHERE l.titulo LIKE %:keyword%")
     List<Libro> findByTitleContaining(@Param("keyword") String keyword);
+
+    @Query("SELECT l FROM Libro l WHERE l.estadoUso = true")
+    List<Libro> findByEstadoUso();
+
+    @Query("SELECT l FROM Libro l WHERE l.fechaDevolucion = :fecha")
+    List<Libro> findByFechaDevolucion(@Param("fecha") LocalDate fecha);
+
+    @Query("SELECT l FROM Libro l WHERE l.fechaPrestamo = :fecha")
+    List<Libro> findByFechaPrestamo(@Param("fecha") LocalDate fecha);
 }
