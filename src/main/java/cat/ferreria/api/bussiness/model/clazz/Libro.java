@@ -47,10 +47,5 @@ public class Libro implements Serializable {
     @Column(name = "estado_uso")
     private boolean estadoUso;
 
-    @Column(name = "fecha_prestamo")
-    private Date fechaPrestamo;
-
-    @Column(name = "fecha_devolucion")
-    private Date fechaDevolucion;
 
 }
