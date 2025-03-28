@@ -29,9 +29,9 @@ public interface LibroRepository extends JpaRepository<Libro, String> {
     @Query("SELECT l FROM Libro l WHERE l.estadoUso = true")
     List<Libro> findByEstadoUso();
 
-    @Query("SELECT l FROM Libro l WHERE l.fechaDevolucion = :fecha")
+    @Query("SELECT l FROM Libro l JOIN Historial h ON l.libroId = h.libro.libroId WHERE h.fechaDevolucion = :fecha")
     List<Libro> findByFechaDevolucion(@Param("fecha") LocalDate fecha);
 
-    @Query("SELECT l FROM Libro l WHERE l.fechaPrestamo = :fecha")
+    @Query("SELECT l FROM Libro l JOIN Historial h ON l.libroId = h.libro.libroId WHERE h.fechaPrestamo = :fecha")
     List<Libro> findByFechaPrestamo(@Param("fecha") LocalDate fecha);
 }
