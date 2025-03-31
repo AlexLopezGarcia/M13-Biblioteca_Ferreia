@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
+import java.time.*;
 import java.util.List;
 
 /**
@@ -30,8 +30,8 @@ public interface LibroRepository extends JpaRepository<Libro, String> {
     List<Libro> findByEstadoUso();
 
     @Query("SELECT l FROM Libro l JOIN Historial h ON l.libroId = h.libro.libroId WHERE h.fechaDevolucion = :fecha")
-    List<Libro> findByFechaDevolucion(@Param("fecha") LocalDate fecha);
+    List<Libro> findByFechaDevolucion(@Param("fecha") LocalDateTime fecha);
 
     @Query("SELECT l FROM Libro l JOIN Historial h ON l.libroId = h.libro.libroId WHERE h.fechaPrestamo = :fecha")
-    List<Libro> findByFechaPrestamo(@Param("fecha") LocalDate fecha);
+    List<Libro> findByFechaPrestamo(@Param("fecha") LocalDateTime fecha);
 }
