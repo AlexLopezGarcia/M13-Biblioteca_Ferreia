@@ -16,4 +16,6 @@ import java.util.List;
 public interface EstanteRepository extends JpaRepository<Estante, Long> {
     List<Estante> findByEstanteriaEstanteriaId(Long estanteriaId);
 
+    @Query("SELECT e FROM Estante e JOIN e.estanteria ria WHERE ria.estanteriaId = :estanteriaId")
+    List<Estante> findEstantesByEstanteriaId(Long estanteriaId);
 }
