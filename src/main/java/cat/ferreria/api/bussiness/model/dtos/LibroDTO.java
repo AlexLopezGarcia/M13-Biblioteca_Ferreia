@@ -20,6 +20,7 @@ public class LibroDTO {
     private String autor;
     private String categoria;
     private Long estante_id;
+    private boolean estado_uso;
 
     public static class LibroMapper {
         public static LibroDTO toDTO(Libro libro) {
@@ -29,7 +30,8 @@ public class LibroDTO {
                     libro.getTitulo(),
                     libro.getAutor(),
                     libro.getCategoria(),
-                    libro.getEstante().getEstante_id()
+                    libro.getEstante().getEstante_id(),
+                    libro.isEstado_uso()
             );
         }
     }
