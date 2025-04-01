@@ -24,7 +24,7 @@ public class Libro implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "libro_id")
+    @Column(name = "libro_id", nullable = false)
     private Long libroId;
 
     @Column(name = "isbn")
