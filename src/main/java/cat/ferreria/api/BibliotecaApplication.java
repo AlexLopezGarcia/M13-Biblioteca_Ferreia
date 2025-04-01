@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 		"cat.ferreria.api.bussiness.services",
 		"cat.ferreria.api.presentation.restcontrollers",
 		"cat.ferreria.api.backend.config",
+		"cat.ferreria.api.configs",
 		"cat.ferreria.api.bussiness.repository",
 		"cat.ferreria.api.bussiness.model.clazz",// Asegurar que Spring escanee las entidades
 		"cat.ferreria.api.bussiness.model.dtos",// Asegurar que Spring escanee los DTOs

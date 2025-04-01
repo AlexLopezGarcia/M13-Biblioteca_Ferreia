@@ -2,7 +2,6 @@ package cat.ferreria.api.bussiness.model.dtos;
 
 import cat.ferreria.api.bussiness.model.clazz.Libro;
 import lombok.*;
-import java.util.Date;
 
 /**
  * @author alexl
@@ -21,7 +20,7 @@ public class LibroDTO {
     private String autor;
     private String categoria;
     private Long estante_id;
-    private Boolean estado_uso;
+    private boolean estado_uso;
 
     public static class LibroMapper {
         public static LibroDTO toDTO(Libro libro) {
@@ -32,7 +31,7 @@ public class LibroDTO {
                     libro.getAutor(),
                     libro.getCategoria(),
                     libro.getEstante().getEstante_id(),
-                    libro.isEstadoUso()
+                    libro.isEstado_uso()
             );
         }
     }
