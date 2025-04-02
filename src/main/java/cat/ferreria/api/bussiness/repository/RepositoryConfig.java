@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  * @date 07/02/2025
  */
 @Configuration
-@EnableJpaRepositories(basePackages = "com.bibliotecaFerreria.bussiness.repository")
+@EnableJpaRepositories(basePackages = "cat.ferreria.api.bussiness.repository")
 public class RepositoryConfig {
 }
