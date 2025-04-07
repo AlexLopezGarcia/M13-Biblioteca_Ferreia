@@ -1,61 +1,68 @@
-//package com.bibliotecaFerreria.bussiness.security;
-//
-//import io.jsonwebtoken.JwtException;
-//import io.jsonwebtoken.Jwts;
-//import io.jsonwebtoken.SignatureAlgorithm;
-//import org.springframework.beans.factory.annotation.Value;
-//import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-//import org.springframework.security.core.Authentication;
-//import org.springframework.stereotype.Component;
-//
-//import java.util.Date;
-//
-// /**
-// * @author alexl
-// * @date 07/02/2025
-// */
-//@Component
-//public class JwtTokenProvider {
-//    @Value("${security.jwt.secret-key:MyKey}")
-//    private String secretKey;
-//
-//    private final long validityInMilliseconds = 3600000; // 1h
-//
-//    public String createToken(String username) {
-//        Date now = new Date();
-//        Date validity = new Date(now.getTime() + validityInMilliseconds);
-//
-//        return Jwts.builder()
-//                .setSubject(username)
-//                .setIssuedAt(now)
-//                .setExpiration(validity)
-//                .signWith(SignatureAlgorithm.HS256, secretKey.getBytes())
-//                .compact();
-//    }
-//
-//    public String getUsernameFromToken(String token) {
-//        return Jwts.parserBuilder()
-//                .setSigningKey(secretKey.getBytes())
-//                .build()
-//                .parseClaimsJws(token)
-//                .getBody()
-//                .getSubject();
-//    }
-//
-//    public boolean validateToken(String token) {
-//        try {
-//            Jwts.parserBuilder()
-//                    .setSigningKey(secretKey.getBytes())
-//                    .build()
-//                    .parseClaimsJws(token);
-//            return true;
-//        } catch (JwtException | IllegalArgumentException e) {
-//            return false;
-//        }
-//    }
-//
-//    public Authentication getAuthentication(String token) {
-//        String username = getUsernameFromToken(token);
-//        return new UsernamePasswordAuthenticationToken(username, "", null);
-//    }
-//}
+package cat.ferreria.api.bussiness.security;
+
+import io.jsonwebtoken.*;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+import java.util.Date;
+
+@Component
+public class JwtTokenProvider {
+
+    @Value("${jwt.secret}")
+    private String jwtSecret;
+
+    @Value("${jwt.expiration}")
+    private long jwtExpirationInMs;
+
+    // Generar token JWT
+    public String generateToken(String dni, String rol) {
+        Date now = new Date();
+        Date expiryDate = new Date(now.getTime() + jwtExpirationInMs);
+
+        return Jwts.builder()
+                .setSubject(dni)
+                .claim("rol", rol)
+                .setIssuedAt(now)
+                .setExpiration(expiryDate)
+                .signWith(SignatureAlgorithm.HS512, jwtSecret)
+                .compact();
+    }
+
+    // Obtener el DNI del token
+    public String getDniFromToken(String token) {
+        Claims claims = Jwts.parser()
+                .setSigningKey(jwtSecret)
+                .parseClaimsJws(token)
+                .getBody();
+        return claims.getSubject();
+    }
+
+    // Obtener el rol del token
+    public String getRolFromToken(String token) {
+        Claims claims = Jwts.parser()
+                .setSigningKey(jwtSecret)
+                .parseClaimsJws(token)
+                .getBody();
+        return claims.get("rol", String.class);
+    }
+
+    // Validar el token
+    public boolean validateToken(String token) {
+        try {
+            Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token);
+            return true;
+        } catch (SignatureException ex) {
+            System.err.println("Firma JWT inválida");
+        } catch (MalformedJwtException ex) {
+            System.err.println("Token JWT mal formado");
+        } catch (ExpiredJwtException ex) {
+            System.err.println("Token JWT expirado");
+        } catch (UnsupportedJwtException ex) {
+            System.err.println("Token JWT no soportado");
+        } catch (IllegalArgumentException ex) {
+            System.err.println("Claims JWT vacíos");
+        }
+        return false;
+    }
+}

@@ -1,46 +1,53 @@
-//package com.bibliotecaFerreria.bussiness.security;
-//
-//import jakarta.servlet.FilterChain;
-//import jakarta.servlet.ServletException;
-//import jakarta.servlet.http.HttpServletRequest;
-//import jakarta.servlet.http.HttpServletResponse;
-//import org.springframework.security.core.context.SecurityContextHolder;
-//import org.springframework.stereotype.Component;
-//import org.springframework.web.filter.OncePerRequestFilter;
-//
-//import java.io.IOException;
-// /**
-//  * @author alexl
-//  * @date 07/02/2025
-//  */
-//@Component
-//public class JwtTokenFilter extends OncePerRequestFilter {
-//
-//    private final JwtTokenProvider jwtTokenProvider;
-//
-//    public JwtTokenFilter(JwtTokenProvider jwtTokenProvider) {
-//        this.jwtTokenProvider = jwtTokenProvider;
-//    }
-//
-//    @Override
-//    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-//        // Obtener el token del encabezado de la solicitud
-//        String token = getTokenFromRequest(request);
-//        if (token != null && jwtTokenProvider.validateToken(token)) {
-//            // Si el token es válido, se establece en el contexto de seguridad
-//            SecurityContextHolder.getContext().setAuthentication(jwtTokenProvider.getAuthentication(token));
-//        }
-//
-//        // Continuar con el filtro para que la solicitud pase
-//        filterChain.doFilter(request, response);
-//    }
-//
-//    // Método para obtener el token del encabezado Authorization
-//    private String getTokenFromRequest(HttpServletRequest request) {
-//        String header = request.getHeader("Authorization");
-//        if (header != null && header.startsWith("Bearer ")) {
-//            return header.substring(7);  // Extrae el token del encabezado Authorization
-//        }
-//        return null;
-//    }
-//}
+package cat.ferreria.api.bussiness.security;
+
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+import java.io.IOException;
+
+@Component
+public class JwtTokenFilter extends OncePerRequestFilter {
+
+    @Autowired
+    private JwtTokenProvider jwtTokenProvider;
+
+    @Autowired
+    private UserDetailsService userDetailsService;
+
+    @Override
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+            throws ServletException, IOException {
+        String token = getTokenFromRequest(request);
+
+        if (token != null && jwtTokenProvider.validateToken(token)) {
+            String dni = jwtTokenProvider.getDniFromToken(token);
+            UserDetails userDetails = userDetailsService.loadUserByUsername(dni);
+
+            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+                    userDetails, null, userDetails.getAuthorities());
+            authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+        }
+
+        filterChain.doFilter(request, response);
+    }
+
+    private String getTokenFromRequest(HttpServletRequest request) {
+        String bearerToken = request.getHeader("Authorization");
+        if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
+            return bearerToken.substring(7);
+        }
+        return null;
+    }
+}
