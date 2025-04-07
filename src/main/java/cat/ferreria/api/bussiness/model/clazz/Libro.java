@@ -6,6 +6,8 @@ import jakarta.persistence.Id;
 import lombok.*;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.Date;
 
 /**
  * @author alexl
@@ -44,6 +46,6 @@ public class Libro implements Serializable {
     private Estante estante;
 
     @Column(name = "estado_uso")
-    private boolean estado_uso;
+    private boolean estadoUso;
 
 }
