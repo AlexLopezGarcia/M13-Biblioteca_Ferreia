@@ -3,6 +3,7 @@ package cat.ferreria.api.bussiness.model.clazz;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
