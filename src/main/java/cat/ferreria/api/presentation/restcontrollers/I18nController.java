@@ -34,7 +34,8 @@ public class I18nController {
                 "alert.cantidad.invalida", "alert.isbn.existe", "alert.cantidad.rango",
                 "alert.cantidad.numero", "libro.editorial", "libro.cantidad",
                 "alert.libro.anyadido", "alert.libro.noanyadido",
-                "libro.estado.nuevo", "libro.estado.usado", "alert.libro.noeliminado"
+                "libro.estado.nuevo", "libro.estado.usado", "alert.libro.noeliminado",
+                "alert.abrir.pantalla.libro", "alert.error.idioma"
         };
 
         // Obtener los mensajes traducidos
