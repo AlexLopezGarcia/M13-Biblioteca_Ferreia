@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -52,14 +53,28 @@ public class UsuarioController {
 
     // Actualizar un usuario
     @PutMapping("/{dni}")
-    public ResponseEntity<String> update(@PathVariable String dni, @RequestBody Usuario usuario) {
-        if (usuarioServices.read(dni).isPresent()) {
-            usuario.setDni(dni);
-            usuarioServices.update(usuario);
+    public ResponseEntity<String> update(@PathVariable String dni, @RequestBody Usuario usuarioNuevo) {
+        Optional<Usuario> usuarioExistente = usuarioServices.read(dni);
+
+        if (usuarioExistente.isPresent()) {
+            Usuario antiguo = usuarioExistente.get();
+
+            String contrasenyaOriginal = antiguo.getContrasenya();
+
+            usuarioServices.delete(dni);
+
+            Usuario nuevoUsuario = new Usuario();
+            nuevoUsuario.setDni(usuarioNuevo.getDni());  // Nuevo DNI
+            nuevoUsuario.setNombre(usuarioNuevo.getNombre());
+            nuevoUsuario.setCorreoElectronico(usuarioNuevo.getCorreoElectronico());
+            nuevoUsuario.setContrasenya(contrasenyaOriginal);  // Mantenemos la contraseña original
+
+            usuarioServices.create(nuevoUsuario);
+
             return ResponseEntity.ok("Usuario actualizado correctamente.");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario no encontrado.");
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body("Usuario no encontrado.");
     }
 
     // Eliminar un usuario
