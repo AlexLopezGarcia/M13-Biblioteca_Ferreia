@@ -32,7 +32,10 @@ public class I18nController {
                 "button.logarse", "button.registrar.usuario", "button.buscar", "button.recargar.lista",
                 "alert.error", "alert.no.seleccionado", "alert.exito", "alert.completa.campos",
                 "alert.cantidad.invalida", "alert.isbn.existe", "alert.cantidad.rango",
-                "alert.cantidad.numero"
+                "alert.cantidad.numero", "libro.editorial", "libro.cantidad",
+                "alert.libro.anyadido", "alert.libro.noanyadido",
+                "libro.estado.nuevo", "libro.estado.usado", "alert.libro.noeliminado",
+                "alert.abrir.pantalla.libro", "alert.error.idioma"
         };
 
         // Obtener los mensajes traducidos
