@@ -18,7 +18,7 @@ import java.util.List;
  * @date 07/02/2025
  */
 @RestController
-@RequestMapping("/historial")
+@RequestMapping("/public/historial")
 @Tag(name = "Historial", description = "Gestión de historial de usuarios")
 public class HistorialController {
 
