@@ -39,6 +39,23 @@ public class LibroController {
         return ResponseEntity.status(201).body(libro);
     }
 
+    @PutMapping("/{isbn}")
+    public ResponseEntity<Libro> updateLibro(@PathVariable String isbn, @RequestBody Libro libro) {
+        try {
+            Libro existingLibro = entityManager.createQuery("SELECT l FROM Libro l WHERE l.isbn = :isbn", Libro.class)
+                    .setParameter("isbn", isbn)
+                    .getSingleResult();
+            existingLibro.setTitulo(libro.getTitulo());
+            existingLibro.setAutor(libro.getAutor());
+            existingLibro.setCategoria(libro.getCategoria());
+            existingLibro.setEstadoUso(libro.getEstadoUso());
+            entityManager.merge(existingLibro);
+            return ResponseEntity.ok(existingLibro);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @DeleteMapping("/{isbn}")
     public ResponseEntity<Void> deleteLibro(@PathVariable String isbn) {
         try {
