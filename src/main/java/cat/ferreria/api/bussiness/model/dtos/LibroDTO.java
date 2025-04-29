@@ -31,7 +31,7 @@ public class LibroDTO {
                     libro.getAutor(),
                     libro.getCategoria(),
                     libro.getEstante().getEstante_id(),
-                    libro.isEstadoUso()
+                    libro.getEstadoUso()
             );
         }
     }

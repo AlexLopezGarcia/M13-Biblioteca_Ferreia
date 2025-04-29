@@ -12,7 +12,6 @@
         </processorPath>
         <module name="biblioteca" />
         <module name="libro" />
-        <module name="M13-Biblioteca_Ferreia" />
       </profile>
     </annotationProcessing>
   </component>
