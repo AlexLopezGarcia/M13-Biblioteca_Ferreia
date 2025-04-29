@@ -32,20 +32,10 @@ public class I18nController {
                 "button.logarse", "button.registrar.usuario", "button.buscar", "button.recargar.lista",
                 "alert.error", "alert.no.seleccionado", "alert.exito", "alert.completa.campos",
                 "alert.cantidad.invalida", "alert.isbn.existe", "alert.cantidad.rango",
-                "alert.cantidad.numero", "label.registro", "label.dni", "label.nombre", "label.correo",
-                "label.contrasena", "label.registrar.usuario", "button.modificar.usuario",
-                "alert.registro.fallido", "alert.registro.exitoso", "alert.usuario.existe",
-                "alert.usuario.duplicado", "alert.registro.error", "validacion.campos.vacios",
-                "validacion.dni", "validacion.nombre", "validacion.correo", "validacion.contrasena",
-                "button.editar.usuario", "button.eliminar.usuario", "checkbox.seleccionar.todos",
-                "alert.seleccion.unica.titulo", "alert.seleccion.unica.cabecera",
-                "alert.seleccion.unica.contenido", "alert.nada.seleccionado.titulo",
-                "alert.nada.seleccionado.cabecera", "alert.nada.seleccionado.contenido",
-                "alert.confirmar.eliminacion.titulo", "alert.confirmar.eliminacion.cabecera",
-                "alert.confirmar.eliminacion.contenido", "alert.exito.eliminacion", "alert.error.modificar",
-                "alert.exito.modificado", "alert.validacion.vacia", "alert.validacion.dni", "alert.validacion.nombre",
-                "alert.validacion.correo", "alert.resultado.vacio", "label.columna.dni", "label.columna.nombre",
-                "label.columna.correo"
+                "alert.cantidad.numero", "libro.editorial", "libro.cantidad",
+                "alert.libro.anyadido", "alert.libro.noanyadido",
+                "libro.estado.nuevo", "libro.estado.usado", "alert.libro.noeliminado",
+                "alert.abrir.pantalla.libro", "alert.error.idioma"
         };
 
         // Obtener los mensajes traducidos

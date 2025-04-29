@@ -11,7 +11,6 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
         </processorPath>
         <module name="libro" />
-        <module name="M13-Biblioteca_Ferreia" />
       </profile>
       <profile name="Annotation profile for biblioteca" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />

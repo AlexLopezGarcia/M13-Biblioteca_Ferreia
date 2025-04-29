@@ -1,6 +1,5 @@
 package cat.ferreria.api.bussiness.repository;
 
-import cat.ferreria.api.bussiness.model.clazz.Estante;
 import cat.ferreria.api.bussiness.model.clazz.Libro;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -26,5 +25,14 @@ public interface LibroRepository extends JpaRepository<Libro, String> {
 
     @Query("SELECT l FROM Libro l WHERE l.titulo LIKE %:keyword%")
     List<Libro> findByTitleContaining(@Param("keyword") String keyword);
+
+    @Query("SELECT l FROM Libro l WHERE l.estadoUso = true")
+    List<Libro> findByEstadoUso();
+
+    @Query("SELECT l FROM Libro l JOIN Historial h ON l.libroId = h.libro.libroId WHERE h.fechaDevolucion = :fecha")
+    List<Libro> findByFechaDevolucion(@Param("fecha") LocalDateTime fecha);
+
+    @Query("SELECT l FROM Libro l JOIN Historial h ON l.libroId = h.libro.libroId WHERE h.fechaPrestamo = :fecha")
+    List<Libro> findByFechaPrestamo(@Param("fecha") LocalDateTime fecha);
 
 }
