@@ -26,7 +26,7 @@ public class I18nController {
 
         // Lista de claves que quieres devolver
         String[] keys = {
-                "libro.isbn", "libro.titulo", "libro.autor", "libro.categoria", "libro.estado",
+                "libro.id", "libro.isbn", "libro.titulo", "libro.autor", "libro.categoria", "libro.estado",
                 "app.title", "button.registrar.devolucion", "button.registrar.prestamo",
                 "button.eliminar.libro", "button.modificar.libro", "button.anyadir.libro",
                 "button.logarse", "button.registrar.usuario", "button.buscar", "button.recargar.lista",
@@ -35,7 +35,11 @@ public class I18nController {
                 "alert.cantidad.numero", "libro.editorial", "libro.cantidad",
                 "alert.libro.anyadido", "alert.libro.noanyadido",
                 "libro.estado.nuevo", "libro.estado.usado", "alert.libro.noeliminado",
-                "alert.abrir.pantalla.libro", "alert.error.idioma"
+                "alert.abrir.pantalla.libro", "alert.error.idioma",
+                "alert.confirmacion", "alert.confirmar.eliminar", "alert.libro.seleccionado",
+                "alert.id.invalido", "alert.seleccionar.libro", "alert.libro.eliminado",
+                "alert.libro.noeliminado.historial", "alert.error.conexion",
+                "button.si", "button.no"
         };
 
         // Obtener los mensajes traducidos

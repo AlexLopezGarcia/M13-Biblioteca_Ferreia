@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.ErrorResponse;
@@ -58,9 +59,9 @@ public class LibroController {
                         content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
             }
     )
-    @GetMapping("/{isbn}")
-    public ResponseEntity<?> read(@PathVariable String isbn) {
-        return libroServices.read(isbn)
+    @GetMapping("/{libro_id}")
+    public ResponseEntity<?> read(@PathVariable long libro_id) {
+        return libroServices.read(libro_id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
@@ -94,10 +95,10 @@ public class LibroController {
                         content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
             }
     )
-    @PutMapping("/{isbn}")
-    public ResponseEntity<String> update(@PathVariable String isbn, @RequestBody Libro libro) {
-        if (libroServices.read(isbn).isPresent()) {
-            libro.setIsbn(isbn);
+    @PutMapping("/{libro_id}")
+    public ResponseEntity<String> update(@PathVariable long libro_id, @RequestBody Libro libro) {
+        if (libroServices.read(libro_id).isPresent()) {
+            libro.setIsbn(String.valueOf(libro_id));
             libroServices.update(libro);
             return ResponseEntity.ok("Libro actualizado");
         }
@@ -116,13 +117,22 @@ public class LibroController {
                         content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
             }
     )
-    @DeleteMapping("/{isbn}")
-    public ResponseEntity<String> delete(@PathVariable String isbn) {
-        if (libroServices.read(isbn).isPresent()) {
-            libroServices.delete(isbn);
-            return ResponseEntity.ok("Libro eliminado");
+
+    @DeleteMapping("/{libro_id}")
+    public ResponseEntity<?> delete(@PathVariable long libro_id) {
+        try {
+            if (libroServices.read(libro_id).isPresent()) {
+                libroServices.delete(libro_id);
+                return ResponseEntity.noContent().build();
+            }
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Libro no encontrado");
+        } catch (DataIntegrityViolationException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body("No se puede eliminar el libro porque está asociado a otros registros (por ejemplo, préstamos).");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error interno del servidor al eliminar el libro");
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body("Libro no encontrado");
     }
 }
