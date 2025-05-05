@@ -13,7 +13,7 @@ import java.util.Locale;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/bibliotecaferreria/i18n")
+@RequestMapping("/public/bibliotecaferreria/i18n")
 public class I18nController {
 
     @Autowired

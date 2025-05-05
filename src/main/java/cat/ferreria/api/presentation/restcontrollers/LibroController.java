@@ -22,7 +22,7 @@ import java.util.List;
  * @date 07/02/2025
  */
 @RestController
-@RequestMapping("/libros")
+@RequestMapping("/public/libros")
 @Tag(name = "Libros", description = "Gestión de libros")
 public class LibroController {
 
