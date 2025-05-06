@@ -90,9 +90,6 @@ public class UsuarioController {
     @PostMapping("/sesion")
     public ResponseEntity<String> iniciarSesion(@RequestParam String correoElectronico, @RequestParam String contrasenya) {
         String resultadoLogin = usuarioServices.iniciarSesion(correoElectronico, contrasenya);
-        //Comprobar si existe el usuario throw if not exists 404
-        //Comprobar si la contraseña es throw if not unauthorized
-        //Si es correcto los dos entonces 200(1)(todo ok)
 
         return resultadoLogin.equals("Sesión iniciada con éxito")
                 ? ResponseEntity.ok(resultadoLogin)

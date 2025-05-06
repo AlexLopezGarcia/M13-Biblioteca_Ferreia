@@ -39,11 +39,11 @@ public class I18nController {
                 "alert.confirmacion", "alert.confirmar.eliminar", "alert.libro.seleccionado",
                 "alert.id.invalido", "alert.seleccionar.libro", "alert.libro.eliminado",
                 "alert.libro.noeliminado.historial", "alert.error.conexion",
-                "button.si", "button.no"
+                "button.si", "button.no",
                 "alert.cantidad.numero", "label.registro", "label.dni", "label.nombre", "label.correo",
                 "label.contrasena", "label.registrar.usuario", "button.modificar.usuario",
                 "label.iniciar.sesion", "label.correo.sesion", "label.contrasena.sesion", "button.iniciar.sesion",
-                "label.error", "label.olvidado","alert.inicio.sesion",
+                "label.error", "label.olvidado","alert.inicio.sesion", "alert.validacion.cabecera",
                 "alert.registro.fallido", "alert.registro.exitoso", "alert.usuario.existe",
                 "alert.usuario.duplicado", "alert.registro.error", "validacion.campos.vacios",
                 "validacion.dni", "validacion.nombre", "validacion.correo", "validacion.contrasena",
@@ -55,7 +55,9 @@ public class I18nController {
                 "alert.confirmar.eliminacion.contenido", "alert.exito.eliminacion", "alert.error.modificar",
                 "alert.exito.modificado", "alert.validacion.vacia", "alert.validacion.dni", "alert.validacion.nombre",
                 "alert.validacion.correo", "alert.resultado.vacio", "label.columna.dni", "label.columna.nombre",
-                "label.columna.correo"
+                "label.columna.correo", "alert.eliminacion.titulo", "alert.eliminacion.cabecera","alert.eliminacion.contenido",
+                "alert.modificado.titulo", "alert.modificado.cabecera", "alert.modificado.contenido", "alert.no.modificado.titulo",
+                "alert.no.modificado.cabecera", "alert.no.modificado.contenido"
         };
 
         // Obtener los mensajes traducidos
