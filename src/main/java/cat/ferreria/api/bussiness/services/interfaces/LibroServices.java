@@ -11,8 +11,8 @@ import java.util.Optional;
  */
 public interface LibroServices {
     String create(Libro libro);       // C
-    Optional<Libro> read(String isbn);  // R
+    Optional<Libro> read(long libro_id);  // R
     void update(Libro libro);         // U
-    void delete(String isbn);         // D
+    void delete(long libro_id);         // D
     List<Libro> getAll();
 }

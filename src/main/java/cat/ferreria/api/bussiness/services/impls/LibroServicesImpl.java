@@ -23,8 +23,8 @@ public class LibroServicesImpl implements LibroServices {
     }
 
     @Override
-    public Optional<Libro> read(String isbn) {
-        return libroRepository.findById(isbn);
+    public Optional<Libro> read(long libro_id) {
+        return libroRepository.findById(String.valueOf(libro_id));
     }
 
     @Override
@@ -38,8 +38,8 @@ public class LibroServicesImpl implements LibroServices {
     }
 
     @Override
-    public void delete(String isbn) {
-        libroRepository.deleteById(isbn);
+    public void delete(long libro_id) {
+        libroRepository.deleteById(String.valueOf(libro_id));
     }
 
     @Override

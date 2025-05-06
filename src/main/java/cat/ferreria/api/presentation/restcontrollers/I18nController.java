@@ -13,7 +13,7 @@ import java.util.Locale;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/bibliotecaferreria/i18n")
+@RequestMapping("/public/bibliotecaferreria/i18n")
 public class I18nController {
 
     @Autowired
@@ -26,12 +26,20 @@ public class I18nController {
 
         // Lista de claves que quieres devolver
         String[] keys = {
-                "libro.isbn", "libro.titulo", "libro.autor", "libro.categoria", "libro.estado",
+                "libro.id", "libro.isbn", "libro.titulo", "libro.autor", "libro.categoria", "libro.estado",
                 "app.title", "button.registrar.devolucion", "button.registrar.prestamo",
                 "button.eliminar.libro", "button.modificar.libro", "button.anyadir.libro",
                 "button.logarse", "button.registrar.usuario", "button.buscar", "button.recargar.lista",
                 "alert.error", "alert.no.seleccionado", "alert.exito", "alert.completa.campos",
                 "alert.cantidad.invalida", "alert.isbn.existe", "alert.cantidad.rango",
+                "alert.cantidad.numero", "libro.editorial", "libro.cantidad",
+                "alert.libro.anyadido", "alert.libro.noanyadido",
+                "libro.estado.nuevo", "libro.estado.usado", "alert.libro.noeliminado",
+                "alert.abrir.pantalla.libro", "alert.error.idioma",
+                "alert.confirmacion", "alert.confirmar.eliminar", "alert.libro.seleccionado",
+                "alert.id.invalido", "alert.seleccionar.libro", "alert.libro.eliminado",
+                "alert.libro.noeliminado.historial", "alert.error.conexion",
+                "button.si", "button.no"
                 "alert.cantidad.numero", "label.registro", "label.dni", "label.nombre", "label.correo",
                 "label.contrasena", "label.registrar.usuario", "button.modificar.usuario",
                 "label.iniciar.sesion", "label.correo.sesion", "label.contrasena.sesion", "button.iniciar.sesion",
