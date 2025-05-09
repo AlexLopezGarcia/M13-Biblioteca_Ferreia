@@ -9,12 +9,8 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
 import java.util.List;
 
-/**
- * @author alexl
- * @date 07/02/2025
- */
 @Repository
-public interface LibroRepository extends JpaRepository<Libro, String> {
+public interface LibroRepository extends JpaRepository<Libro, Long> {
     List<Libro> findByIsbn(String isbn);
     List<Libro> findByTitulo(String titulo);
     List<Libro> findByAutor(String autor);
@@ -34,5 +30,4 @@ public interface LibroRepository extends JpaRepository<Libro, String> {
 
     @Query("SELECT l FROM Libro l JOIN Historial h ON l.libroId = h.libro.libroId WHERE h.fechaPrestamo = :fecha")
     List<Libro> findByFechaPrestamo(@Param("fecha") LocalDateTime fecha);
-
 }

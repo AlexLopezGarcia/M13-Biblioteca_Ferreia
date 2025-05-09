@@ -1,12 +1,10 @@
 package cat.ferreria.api.presentation.restcontrollers;
-/**
- * @author Ruben
- * @date 07/02/2025
- */
+
 import cat.ferreria.api.bussiness.model.clazz.Usuario;
 import cat.ferreria.api.bussiness.model.dtos.UsuarioDTO;
 import cat.ferreria.api.bussiness.services.interfaces.UsuarioServices;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,21 +13,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/private/usuarios")
 @Tag(name = "Usuarios", description = "Gestión de usuarios")
 public class UsuarioController {
 
     @Autowired
     private UsuarioServices usuarioServices;
 
-    // Obtener todos los usuarios
     @GetMapping
     public ResponseEntity<List<UsuarioDTO>> getAll() {
         List<UsuarioDTO> usuarios = usuarioServices.getAll();
         return ResponseEntity.ok(usuarios);
     }
 
-    // Obtener un usuario por DNI
     @GetMapping("/{dni}")
     public ResponseEntity<?> read(@PathVariable String dni) {
         return usuarioServices.read(dni)
@@ -37,9 +33,8 @@ public class UsuarioController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // Crear un nuevo usuario
     @PostMapping
-    public ResponseEntity<String> create(@RequestBody Usuario usuario) {
+    public ResponseEntity<String> create(@Valid @RequestBody Usuario usuario) {
         try {
             String dni = usuarioServices.create(usuario);
             return ResponseEntity.status(HttpStatus.CREATED)
@@ -50,9 +45,8 @@ public class UsuarioController {
         }
     }
 
-    // Actualizar un usuario
     @PutMapping("/{dni}")
-    public ResponseEntity<String> update(@PathVariable String dni, @RequestBody Usuario usuario) {
+    public ResponseEntity<String> update(@PathVariable String dni, @Valid @RequestBody Usuario usuario) {
         if (usuarioServices.read(dni).isPresent()) {
             usuario.setDni(dni);
             usuarioServices.update(usuario);
@@ -62,7 +56,6 @@ public class UsuarioController {
                 .body("Usuario no encontrado.");
     }
 
-    // Eliminar un usuario
     @DeleteMapping("/{dni}")
     public ResponseEntity<String> delete(@PathVariable String dni) {
         if (usuarioServices.read(dni).isPresent()) {
@@ -72,16 +65,4 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body("Usuario no encontrado.");
     }
-
-    @PostMapping("/sesion")
-    public ResponseEntity<String> iniciarSesion(@RequestParam String correoElectronico, @RequestParam String contrasenya) {
-        String resultadoLogin = usuarioServices.iniciarSesion(correoElectronico, contrasenya);
-
-        return resultadoLogin.equals("Sesión iniciada con éxito")
-                ? ResponseEntity.ok(resultadoLogin)
-                : ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(resultadoLogin);
-    }
 }
-
-
-
