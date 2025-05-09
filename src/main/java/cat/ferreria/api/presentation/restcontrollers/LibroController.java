@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -17,10 +18,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * @author alexl
- * @date 07/02/2025
- */
 @RestController
 @RequestMapping("/public/libros")
 @Tag(name = "Libros", description = "Gestión de libros")
@@ -29,7 +26,7 @@ public class LibroController {
     @Autowired
     private LibroServicesImpl libroServices;
 
-    @Operation (
+    @Operation(
             summary = "Obtener todos los libros",
             description = "Devuelve todos los libros",
             responses = {
@@ -37,7 +34,7 @@ public class LibroController {
                     @ApiResponse(responseCode = "404", description = "Libro no encontrado",
                             content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
                     @ApiResponse(responseCode = "500", description = "Error interno",
-                        content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
             }
     )
     @GetMapping
@@ -48,85 +45,89 @@ public class LibroController {
         return ResponseEntity.ok(libroDTOs);
     }
 
-    @Operation (
-            summary = "Obtener todos los libros",
+    @Operation(
+            summary = "Obtener un libro por ISBN",
             description = "Devuelve un libro por su ISBN",
             responses = {
                     @ApiResponse(responseCode = "200", description = "Libro encontrado"),
                     @ApiResponse(responseCode = "404", description = "Libro no encontrado",
-                        content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
                     @ApiResponse(responseCode = "500", description = "Error interno",
-                        content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
             }
     )
-    @GetMapping("/{libro_id}")
-    public ResponseEntity<?> read(@PathVariable long libro_id) {
-        return libroServices.read(libro_id)
+    @GetMapping("/{isbn}")
+    public ResponseEntity<?> read(@PathVariable String isbn) {
+        return libroServices.readByIsbn(isbn)
+                .map(LibroDTO.LibroMapper::toDTO)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @Operation (
+    @Operation(
             summary = "Crear un libro",
             description = "Crea un libro",
             responses = {
                     @ApiResponse(responseCode = "201", description = "Libro creado"),
-                    @ApiResponse(responseCode = "404", description = "Libro no encontrado",
+                    @ApiResponse(responseCode = "400", description = "Datos inválidos",
                             content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
                     @ApiResponse(responseCode = "500", description = "Error interno",
-                        content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
             }
     )
     @PostMapping
-    public ResponseEntity<String> create(@RequestBody Libro libro) {
+    public ResponseEntity<LibroDTO> create(@Valid @RequestBody Libro libro) {
         String isbn = libroServices.create(libro);
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body("Libro creado con ISBN: " + isbn);
+        return libroServices.readByIsbn(isbn)
+                .map(LibroDTO.LibroMapper::toDTO)
+                .map(dto -> ResponseEntity.status(HttpStatus.CREATED).body(dto))
+                .orElse(ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
     }
 
-    @Operation (
+    @Operation(
             summary = "Actualizar un libro",
-            description = "Actualiza un libro",
+            description = "Actualiza un libro por su ISBN",
             responses = {
                     @ApiResponse(responseCode = "200", description = "Libro actualizado"),
                     @ApiResponse(responseCode = "404", description = "Libro no encontrado",
-                        content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
                     @ApiResponse(responseCode = "500", description = "Error interno",
-                        content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
             }
     )
-    @PutMapping("/{libro_id}")
-    public ResponseEntity<String> update(@PathVariable long libro_id, @RequestBody Libro libro) {
-        if (libroServices.read(libro_id).isPresent()) {
-            libro.setIsbn(String.valueOf(libro_id));
+    @PutMapping("/{isbn}")
+    public ResponseEntity<LibroDTO> update(@PathVariable String isbn, @Valid @RequestBody Libro libro) {
+        if (libroServices.readByIsbn(isbn).isPresent()) {
+            libro.setIsbn(isbn);
             libroServices.update(libro);
-            return ResponseEntity.ok("Libro actualizado");
+            return libroServices.readByIsbn(isbn)
+                    .map(LibroDTO.LibroMapper::toDTO)
+                    .map(ResponseEntity::ok)
+                    .orElse(ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body("Libro no encontrado");
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
-    @Operation (
+    @Operation(
             summary = "Eliminar un libro",
-            description = "Elimina un libro",
+            description = "Elimina un libro por su ISBN",
             responses = {
-                    @ApiResponse(responseCode = "200", description = "Libro eliminado"),
+                    @ApiResponse(responseCode = "204", description = "Libro eliminado"),
                     @ApiResponse(responseCode = "404", description = "Libro no encontrado",
-                        content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
+                    @ApiResponse(responseCode = "409", description = "Conflicto: libro asociado a otros registros"),
                     @ApiResponse(responseCode = "500", description = "Error interno",
-                        content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
             }
     )
-
-    @DeleteMapping("/{libro_id}")
-    public ResponseEntity<?> delete(@PathVariable long libro_id) {
+    @DeleteMapping("/{isbn}")
+    public ResponseEntity<?> delete(@PathVariable String isbn) {
         try {
-            if (libroServices.read(libro_id).isPresent()) {
-                libroServices.delete(libro_id);
+            if (libroServices.readByIsbn(isbn).isPresent()) {
+                libroServices.deleteByIsbn(isbn);
                 return ResponseEntity.noContent().build();
             }
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("Libro no encontrado");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Libro no encontrado");
         } catch (DataIntegrityViolationException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT)
                     .body("No se puede eliminar el libro porque está asociado a otros registros (por ejemplo, préstamos).");

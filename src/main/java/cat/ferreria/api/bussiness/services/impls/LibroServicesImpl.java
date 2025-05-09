@@ -2,48 +2,46 @@ package cat.ferreria.api.bussiness.services.impls;
 
 import cat.ferreria.api.bussiness.model.clazz.Libro;
 import cat.ferreria.api.bussiness.repository.LibroRepository;
-import cat.ferreria.api.bussiness.services.interfaces.LibroServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-/**
- * @author alexl
- * @date 07/02/2025
- */
 @Service
-public class LibroServicesImpl implements LibroServices {
-    private final LibroRepository libroRepository;
+public class LibroServicesImpl {
 
     @Autowired
-    public LibroServicesImpl(LibroRepository libroRepository) {
-        this.libroRepository = libroRepository;
+    private LibroRepository libroRepository;
+
+    public List<Libro> getAll() {
+        return libroRepository.findAll();
     }
 
-    @Override
-    public Optional<Libro> read(long libro_id) {
-        return libroRepository.findById(String.valueOf(libro_id));
+    public Optional<Libro> read(Long libroId) {
+        return libroRepository.findById(libroId);
     }
 
-    @Override
+    public Optional<Libro> readByIsbn(String isbn) {
+        return libroRepository.findByIsbn(isbn).stream().findFirst();
+    }
+
     public String create(Libro libro) {
-        return libroRepository.save(libro).getIsbn();
+        libroRepository.save(libro);
+        return libro.getIsbn();
     }
 
-    @Override
     public void update(Libro libro) {
         libroRepository.save(libro);
     }
 
-    @Override
-    public void delete(long libro_id) {
-        libroRepository.deleteById(String.valueOf(libro_id));
+    public void delete(Long libroId) {
+        libroRepository.deleteById(libroId);
     }
 
-    @Override
-    public List<Libro> getAll() {
-        return libroRepository.findAll();
+    public void deleteByIsbn(String isbn) {
+        libroRepository.findByIsbn(isbn).stream()
+                .findFirst()
+                .ifPresent(libro -> libroRepository.deleteById(libro.getLibroId()));
     }
 }

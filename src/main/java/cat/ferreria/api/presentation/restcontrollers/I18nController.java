@@ -21,10 +21,11 @@ public class I18nController {
 
     @GetMapping("/messages")
     public Map<String, String> getMessages(HttpServletRequest request) {
-        Locale locale = RequestContextUtils.getLocale(request); // Obtiene el idioma de la cabecera Accept-Language
+        Locale locale = RequestContextUtils.getLocale(request) != null
+                ? RequestContextUtils.getLocale(request)
+                : Locale.forLanguageTag("es");
         Map<String, String> messages = new HashMap<>();
 
-        // Lista de claves que quieres devolver
         String[] keys = {
                 "libro.id", "libro.isbn", "libro.titulo", "libro.autor", "libro.categoria", "libro.estado",
                 "app.title", "button.registrar.devolucion", "button.registrar.prestamo",
@@ -39,13 +40,19 @@ public class I18nController {
                 "alert.confirmacion", "alert.confirmar.eliminar", "alert.libro.seleccionado",
                 "alert.id.invalido", "alert.seleccionar.libro", "alert.libro.eliminado",
                 "alert.libro.noeliminado.historial", "alert.error.conexion",
-                "button.si", "button.no"
+                "button.si", "button.no",
+                "login.title", "login.header", "login.username", "login.password",
+                "login.success", "login.error", "alert.login.cancelado",
+                "alert.username.invalido", "alert.password.invalido"
         };
 
-        // Obtener los mensajes traducidos
         for (String key : keys) {
-            String message = messageSource.getMessage(key, null, locale);
-            messages.put(key, message);
+            try {
+                String message = messageSource.getMessage(key, null, locale);
+                messages.put(key, message);
+            } catch (Exception e) {
+                messages.put(key, "Traducción no encontrada: " + key);
+            }
         }
 
         return messages;
