@@ -38,10 +38,4 @@ public class LibroServicesImpl {
     public void delete(Long libroId) {
         libroRepository.deleteById(libroId);
     }
-
-    public void deleteByIsbn(String isbn) {
-        libroRepository.findByIsbn(isbn).stream()
-                .findFirst()
-                .ifPresent(libro -> libroRepository.deleteById(libro.getLibroId()));
-    }
 }

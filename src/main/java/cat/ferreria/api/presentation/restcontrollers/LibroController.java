@@ -110,7 +110,7 @@ public class LibroController {
 
     @Operation(
             summary = "Eliminar un libro",
-            description = "Elimina un libro por su ISBN",
+            description = "Elimina un libro por su ID",
             responses = {
                     @ApiResponse(responseCode = "204", description = "Libro eliminado"),
                     @ApiResponse(responseCode = "404", description = "Libro no encontrado",
@@ -120,11 +120,11 @@ public class LibroController {
                             content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
             }
     )
-    @DeleteMapping("/{isbn}")
-    public ResponseEntity<?> delete(@PathVariable String isbn) {
+    @DeleteMapping("/{libroId}")
+    public ResponseEntity<?> delete(@PathVariable Long libroId) {
         try {
-            if (libroServices.readByIsbn(isbn).isPresent()) {
-                libroServices.deleteByIsbn(isbn);
+            if (libroServices.read(libroId).isPresent()) {
+                libroServices.delete(libroId);
                 return ResponseEntity.noContent().build();
             }
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Libro no encontrado");
