@@ -37,12 +37,13 @@ public class SecurityConfig {
                                 "/v3/api-docs.yaml",
                                 "/swagger-resources/**",
                                 "/webjars/**",
-                                "/bibliotecaferreria/i18n/**"
+                                "/public/bibliotecaferreria/i18n/**"
                         ).permitAll()
                         .requestMatchers("/private/**").authenticated()
                 )
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
+                .exceptionHandling(ex -> ex.authenticationEntryPoint((req, res, e) -> res.sendError(401, "No autorizado")))
                 .build();
     }
 
