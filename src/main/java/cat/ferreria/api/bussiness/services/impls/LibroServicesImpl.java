@@ -1,19 +1,28 @@
 package cat.ferreria.api.bussiness.services.impls;
 
-import cat.ferreria.api.bussiness.model.clazz.Libro;
-import cat.ferreria.api.bussiness.repository.LibroRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import cat.ferreria.api.bussiness.model.clazz.*;
+import cat.ferreria.api.bussiness.repository.*;
+import cat.ferreria.api.bussiness.services.interfaces.*;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.stereotype.*;
+import org.springframework.transaction.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class LibroServicesImpl {
+public class LibroServicesImpl implements LibroServices {
+    private final LibroRepository libroRepository;
+    private final HistorialRepository historialRepository;
 
     @Autowired
-    private LibroRepository libroRepository;
+    public LibroServicesImpl(LibroRepository libroRepository,
+                             HistorialRepository historialRepository) {
+        this.libroRepository     = libroRepository;
+        this.historialRepository = historialRepository;
+    }
 
+    @Override
     public List<Libro> getAll() {
         return libroRepository.findAll();
     }
@@ -31,11 +40,22 @@ public class LibroServicesImpl {
         return libro.getIsbn();
     }
 
+    @Override
+    public Optional<Libro> read(long libro_id) {
+        return Optional.empty();
+    }
+
     public void update(Libro libro) {
         libroRepository.save(libro);
     }
 
-    public void delete(Long libroId) {
+    @Override
+    @Transactional
+    public void delete(long libroId, boolean force) {
+        if (force) {
+            // Elimina primero los historiales asociados al libro
+            historialRepository.deleteByLibroLibroId(libroId);
+        }
         libroRepository.deleteById(libroId);
     }
 }
