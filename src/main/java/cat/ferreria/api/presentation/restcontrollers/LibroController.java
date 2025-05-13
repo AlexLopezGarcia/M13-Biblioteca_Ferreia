@@ -135,7 +135,7 @@ public class LibroController {
         } catch (DataIntegrityViolationException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT)
                     .body("No se puede eliminar el libro porque está asociado a historial. " +
-                            "Si quieres forzar el borrado, añade ?force=true");
+                            "Si quieres borrarlo, añade ?force=true");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Error interno del servidor al eliminar el libro: " + e.getMessage());
