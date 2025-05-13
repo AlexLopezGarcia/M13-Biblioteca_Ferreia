@@ -127,18 +127,14 @@ public class LibroController {
             @RequestParam(name = "force", defaultValue = "false") boolean force) {
         try {
             if (libroServices.read(libroId).isEmpty()) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                        .body("Libro no encontrado");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
             }
             libroServices.delete(libroId, force);
             return ResponseEntity.noContent().build();
         } catch (DataIntegrityViolationException e) {
-            return ResponseEntity.status(HttpStatus.CONFLICT)
-                    .body("No se puede eliminar el libro porque está asociado a historial. " +
-                            "Si quieres borrarlo, añade ?force=true");
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error interno del servidor al eliminar el libro: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 }
