@@ -27,7 +27,8 @@ public class LibroServicesImpl implements LibroServices {
         return libroRepository.findAll();
     }
 
-    public Optional<Libro> read(Long libroId) {
+    @Override
+    public Optional<Libro> read(long libroId) {
         return libroRepository.findById(libroId);
     }
 
@@ -38,11 +39,6 @@ public class LibroServicesImpl implements LibroServices {
     public String create(Libro libro) {
         libroRepository.save(libro);
         return libro.getIsbn();
-    }
-
-    @Override
-    public Optional<Libro> read(long libro_id) {
-        return Optional.empty();
     }
 
     public void update(Libro libro) {
