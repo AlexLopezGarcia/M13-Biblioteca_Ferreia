@@ -16,6 +16,10 @@ public interface LibroRepository extends JpaRepository<Libro, Long> {
     List<Libro> findByAutor(String autor);
     List<Libro> findByCategoria(String categoria);
 
+    //Cantidad Libro
+    @Query("SELECT COUNT(l) FROM Libro l WHERE l.titulo = :nombre")
+    int countByName(@Param("nombre") String nombre);
+
     @Query("SELECT l FROM Libro l WHERE l.autor LIKE %:keyword%")
     List<Libro> findByAutorContaining(@Param("keyword") String keyword);
 

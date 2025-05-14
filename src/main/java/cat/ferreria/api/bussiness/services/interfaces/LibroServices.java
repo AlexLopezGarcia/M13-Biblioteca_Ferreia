@@ -15,4 +15,5 @@ public interface LibroServices {
     void update(Libro libro);         // U
     void delete(long libro_id);         // D
     List<Libro> getAll();
+    int count(String nombre);
 }
