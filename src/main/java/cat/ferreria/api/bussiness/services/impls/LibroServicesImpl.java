@@ -2,6 +2,8 @@ package cat.ferreria.api.bussiness.services.impls;
 
 import cat.ferreria.api.bussiness.model.clazz.Libro;
 import cat.ferreria.api.bussiness.repository.LibroRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,5 +39,17 @@ public class LibroServicesImpl {
 
     public void delete(Long libroId) {
         libroRepository.deleteById(libroId);
+    }
+
+    public void deleteByIsbn(String isbn) {
+        libroRepository.findByIsbn(isbn).stream()
+                .findFirst()
+                .ifPresent(libro -> libroRepository.deleteById(libro.getLibroId()));
+    }
+
+    public int countByName(String nombre) {
+        Logger _log = LoggerFactory.getLogger(LibroServicesImpl.class);
+        _log.info("Count by name: {}", libroRepository.countByName(nombre));
+        return libroRepository.countByName(nombre);
     }
 }
