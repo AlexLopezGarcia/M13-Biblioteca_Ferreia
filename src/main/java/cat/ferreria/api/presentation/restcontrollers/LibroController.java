@@ -128,20 +128,21 @@ public class LibroController {
                             content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
             }
     )
+
     @DeleteMapping("/{libroId}")
-    public ResponseEntity<?> delete(@PathVariable Long libroId) {
+    public ResponseEntity<?> delete(
+            @PathVariable Long libroId,
+            @RequestParam(name = "force", defaultValue = "false") boolean force) {
         try {
-            if (libroServices.read(libroId).isPresent()) {
-                libroServices.delete(libroId);
-                return ResponseEntity.noContent().build();
+            if (libroServices.read(libroId).isEmpty()) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
             }
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Libro no encontrado");
+            libroServices.delete(libroId, force);
+            return ResponseEntity.noContent().build();
         } catch (DataIntegrityViolationException e) {
-            return ResponseEntity.status(HttpStatus.CONFLICT)
-                    .body("No se puede eliminar el libro porque está asociado a otros registros (por ejemplo, préstamos).");
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error interno del servidor al eliminar el libro");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 }

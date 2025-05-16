@@ -43,7 +43,8 @@ public class I18nController {
                 "button.si", "button.no",
                 "login.title", "login.header", "login.username", "login.password",
                 "login.success", "login.error", "alert.login.cancelado",
-                "alert.username.invalido", "alert.password.invalido"
+                "alert.username.invalido", "alert.password.invalido",
+                "alert.error.abrir.pantalla.modificarlibro"
         };
 
         for (String key : keys) {

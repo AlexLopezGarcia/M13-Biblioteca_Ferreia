@@ -13,7 +13,7 @@ public interface LibroServices {
     String create(Libro libro);       // C
     Optional<Libro> read(long libro_id);  // R
     void update(Libro libro);         // U
-    void delete(long libro_id);         // D
+    void delete(long libro_id, boolean force);  // D
     List<Libro> getAll();
     int count(String nombre);
 }

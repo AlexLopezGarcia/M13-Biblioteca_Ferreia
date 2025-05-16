@@ -3,6 +3,7 @@ package cat.ferreria.api.bussiness.model.clazz;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.*;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -37,9 +38,9 @@ public class Historial implements Serializable {
     private Libro libro;
 
     @Column(name = "fecha_prestamo")
-    private LocalDateTime fechaPrestamo;
+    private Date fechaPrestamo;
 
     @Column(name = "fecha_devolucion")
-    private LocalDateTime fechaDevolucion;
+    private Date fechaDevolucion;
 
 }

@@ -1,7 +1,10 @@
 package cat.ferreria.api.bussiness.repository;
 
 import cat.ferreria.api.bussiness.model.clazz.Historial;
-import org.springframework.data.jpa.repository.JpaRepository;
+import cat.ferreria.api.bussiness.model.clazz.Libro;
+import jakarta.transaction.Transactional;
+import org.springframework.data.jpa.repository.*;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,4 +16,9 @@ import java.util.List;
 @Repository
 public interface HistorialRepository extends JpaRepository<Historial, Long> {
     List<Historial> findByUsuarioDni(String dni);
+
+
+    @Modifying
+    @Transactional
+    void deleteByLibroLibroId(Long libroId);
 }

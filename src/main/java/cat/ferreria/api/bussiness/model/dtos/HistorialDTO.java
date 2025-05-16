@@ -4,6 +4,7 @@ import cat.ferreria.api.bussiness.model.clazz.Historial;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * @author alexl
@@ -19,8 +20,8 @@ public class HistorialDTO {
     private Long historialId;
     private String dni;            // ID del usuario asociado
     private Long libroId;          // ID del libro asociado
-    private LocalDateTime fechaPrestamo;
-    private LocalDateTime fechaDevolucion;
+    private Date fechaPrestamo;
+    private Date fechaDevolucion;
 
     public static class HistorialMapper {
         public static HistorialDTO toDTO(Historial historial) {
