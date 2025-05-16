@@ -14,6 +14,8 @@ public class LibroServicesImpl implements LibroServices {
     private final LibroRepository libroRepository;
     private final HistorialRepository historialRepository;
 
+
+
     @Autowired
     public LibroServicesImpl(LibroRepository libroRepository,
                              HistorialRepository historialRepository) {
@@ -60,9 +62,9 @@ public class LibroServicesImpl implements LibroServices {
                 .ifPresent(libro -> libroRepository.deleteById(libro.getLibroId()));
     }
 
-    public int countByName(String nombre) {
-        Logger _log = LoggerFactory.getLogger(LibroServicesImpl.class);
-        _log.info("Count by name: {}", libroRepository.countByName(nombre));
+    @Override
+    public int count(String nombre) {
         return libroRepository.countByName(nombre);
     }
+
 }

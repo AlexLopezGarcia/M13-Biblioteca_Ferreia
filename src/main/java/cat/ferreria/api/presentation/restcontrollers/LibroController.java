@@ -69,7 +69,7 @@ public class LibroController {
 
     @GetMapping("count/{titulo}")
     public int count(@PathVariable String titulo) {
-        return libroServices.countByName(titulo);
+        return libroServices.count(titulo);
     }
 
     @Operation(

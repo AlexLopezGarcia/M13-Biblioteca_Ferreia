@@ -1,33 +1,31 @@
 package cat.ferreria.api.configs.security;
 
 import cat.ferreria.api.bussiness.model.clazz.Usuario;
+import cat.ferreria.api.bussiness.repository.UsuarioRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
+
+import java.util.ArrayList;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-    @PersistenceContext
-    private EntityManager entityManager;
+    private final UsuarioRepository usuarioRepository;
+
+    @Autowired
+    public CustomUserDetailsService(UsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String dni) throws UsernameNotFoundException {
-        Usuario usuario = entityManager.createQuery("SELECT u FROM Usuario u WHERE u.dni = :dni", Usuario.class)
-                .setParameter("dni", dni)
-                .getSingleResult();
+        Usuario usuario = usuarioRepository.findById(dni)
+                .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado con DNI: " + dni));
 
-        if (usuario == null) {
-            throw new UsernameNotFoundException("Usuario no encontrado: " + dni);
-        }
-
-        return org.springframework.security.core.userdetails.User
-                .withUsername(usuario.getDni())
-                .password(usuario.getContrasenya())
-                .authorities("USER")
-                .build();
+        return new User(usuario.getDni(), usuario.getContrasenya(), new ArrayList<>());
     }
 }
