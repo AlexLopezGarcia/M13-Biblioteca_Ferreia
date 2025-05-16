@@ -53,4 +53,16 @@ public class LibroServicesImpl implements LibroServices {
         }
         libroRepository.deleteById(libroId);
     }
+
+    public void deleteByIsbn(String isbn) {
+        libroRepository.findByIsbn(isbn).stream()
+                .findFirst()
+                .ifPresent(libro -> libroRepository.deleteById(libro.getLibroId()));
+    }
+
+    public int countByName(String nombre) {
+        Logger _log = LoggerFactory.getLogger(LibroServicesImpl.class);
+        _log.info("Count by name: {}", libroRepository.countByName(nombre));
+        return libroRepository.countByName(nombre);
+    }
 }
