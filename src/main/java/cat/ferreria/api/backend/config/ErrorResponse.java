@@ -1,5 +1,6 @@
 package cat.ferreria.api.backend.config;
 
+//Clase para poder devolver un error en el formato correcto
 public class ErrorResponse {
     private int status;
     private String message;
