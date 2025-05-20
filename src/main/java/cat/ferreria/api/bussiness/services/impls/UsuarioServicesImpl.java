@@ -4,13 +4,12 @@ package cat.ferreria.api.bussiness.services.impls;
  * @date 07/02/2025
  */
 
-import cat.ferreria.api.bussiness.model.clazz.Historial;
 import cat.ferreria.api.bussiness.model.clazz.Usuario;
-import cat.ferreria.api.bussiness.model.dtos.HistorialDTO;
 import cat.ferreria.api.bussiness.model.dtos.UsuarioDTO;
 import cat.ferreria.api.bussiness.repository.*;
 import cat.ferreria.api.bussiness.services.interfaces.UsuarioServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,10 +20,12 @@ import java.util.stream.Collectors;
 public class UsuarioServicesImpl implements UsuarioServices {
 
     private final UsuarioRepository usuarioRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UsuarioServicesImpl(UsuarioRepository usuarioRepository) {
+    public UsuarioServicesImpl(UsuarioRepository usuarioRepository, PasswordEncoder passwordEncoder) {
         this.usuarioRepository = usuarioRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -33,6 +34,7 @@ public class UsuarioServicesImpl implements UsuarioServices {
             throw new IllegalStateException("El usuario con DNI " + usuario.getDni() + " ya existe.");
         }
 
+        usuario.setContrasenya(passwordEncoder.encode(usuario.getContrasenya()));
         usuarioRepository.save(usuario);
         return usuario.getDni();
     }
@@ -48,6 +50,9 @@ public class UsuarioServicesImpl implements UsuarioServices {
             throw new IllegalStateException("El usuario con DNI " + usuario.getDni() + " no existe.");
         }
 
+        if (usuario.getContrasenya() != null && !usuario.getContrasenya().isEmpty()) {
+            usuario.setContrasenya(passwordEncoder.encode(usuario.getContrasenya()));
+        }
         usuarioRepository.save(usuario);
     }
 
@@ -67,21 +72,8 @@ public class UsuarioServicesImpl implements UsuarioServices {
                 .collect(Collectors.toList());
     }
 
-    public String iniciarSesion(String correoElectronico, String contrasenya) {
-        Optional<Usuario> usuario = usuarioRepository.findByCorreoElectronicoAndContrasenya(correoElectronico, contrasenya);
-        String respuesta;
-
-        if (usuario.isPresent()) {
-            respuesta = "Sesión iniciada con éxito";
-        } else {
-            respuesta = "Credenciales incorrectas";
-        }
-        return respuesta;
-    }
-
     private UsuarioDTO mapToDTO(Usuario usuario) {
-
-        return new UsuarioDTO(usuario.getDni(), usuario.getNombre(), usuario.getContrasenya() ,usuario.getCorreoElectronico());
+        return new UsuarioDTO(usuario.getDni(), usuario.getNombre(), usuario.getContrasenya(), usuario.getCorreoElectronico());
     }
 }
 

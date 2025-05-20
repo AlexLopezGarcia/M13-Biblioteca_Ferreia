@@ -16,5 +16,4 @@ public interface UsuarioServices {
     void update(Usuario usuario);
     void delete(String dni);
     List<UsuarioDTO> getAll();
-    String iniciarSesion(String correo, String contrasena);
 }
