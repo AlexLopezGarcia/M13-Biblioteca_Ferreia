@@ -5,6 +5,7 @@ package cat.ferreria.api.presentation.restcontrollers;
  */
 import cat.ferreria.api.bussiness.model.clazz.Usuario;
 import cat.ferreria.api.bussiness.model.dtos.UsuarioDTO;
+import cat.ferreria.api.bussiness.services.impls.UsuarioServicesImpl;
 import cat.ferreria.api.bussiness.services.interfaces.UsuarioServices;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import java.util.Optional;
 public class UsuarioController {
 
     @Autowired
-    private UsuarioServices usuarioServices;
+    private UsuarioServicesImpl usuarioServices;
 
     // Obtener todos los usuarios
     @GetMapping
