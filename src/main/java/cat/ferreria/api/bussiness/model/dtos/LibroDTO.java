@@ -4,6 +4,13 @@ import cat.ferreria.api.bussiness.model.clazz.Libro;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
+
+/**
+ * DTO para libro en la API.
+ *
+ * @author alexl
+ * @date 18/02/2025
+ * */
 @Getter
 @Setter
 @ToString

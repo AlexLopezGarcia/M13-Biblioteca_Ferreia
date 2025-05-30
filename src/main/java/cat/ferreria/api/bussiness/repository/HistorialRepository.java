@@ -10,13 +10,14 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
+ * Repositorio de entidad Historial
+ *
  * @author alexl
  * @date 07/02/2025
  */
 @Repository
 public interface HistorialRepository extends JpaRepository<Historial, Long> {
     List<Historial> findByUsuarioDni(String dni);
-
 
     @Modifying
     @Transactional

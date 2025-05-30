@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Optional;
 
 /**
+ * Implementación de los servicios para gestionar estantes.
+ *
  * @author alexl
  * @date 14/03/2025
  */

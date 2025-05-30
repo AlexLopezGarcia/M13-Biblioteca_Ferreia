@@ -1,6 +1,13 @@
 package cat.ferreria.api.backend.config;
 
-//Clase para poder devolver un error en el formato correcto
+import lombok.Getter;
+
+/**
+ * @author alexl
+ * Clase para poder devolver un error en el formato correcto
+ * */
+
+@Getter
 public class ErrorResponse {
     private int status;
     private String message;
@@ -10,16 +17,8 @@ public class ErrorResponse {
         this.message = message;
     }
 
-    public int getStatus() {
-        return status;
-    }
-
     public void setStatus(int status) {
         this.status = status;
-    }
-
-    public String getMessage() {
-        return message;
     }
 
     public void setMessage(String message) {

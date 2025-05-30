@@ -7,6 +7,8 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
+ * DTO para representar el historial de préstamos de libros.
+ *
  * @author alexl
  * @date 07/02/2025
  */

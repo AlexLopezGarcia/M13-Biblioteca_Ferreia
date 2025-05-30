@@ -8,9 +8,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+
+/**
+ * Controlador para la gestión de internacionalización (Modulo i18n) de mensajes.
+ *
+ * @author alexl
+ * @date 16/05/2025
+ * */
 
 @RestController
 @RequestMapping("/public/bibliotecaferreria/i18n")
@@ -47,6 +55,7 @@ public class I18nController {
                 "alert.error.abrir.pantalla.modificarlibro"
         };
 
+
         for (String key : keys) {
             try {
                 String message = messageSource.getMessage(key, null, locale);
@@ -55,7 +64,6 @@ public class I18nController {
                 messages.put(key, "Traducción no encontrada: " + key);
             }
         }
-
         return messages;
     }
 }

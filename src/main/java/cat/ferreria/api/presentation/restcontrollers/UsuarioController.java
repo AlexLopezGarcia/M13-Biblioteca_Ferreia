@@ -12,6 +12,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Controlador REST para la gestión de usuarios.
+ *
+ * @author Ruben
+ * @date 16/04/2025
+ * */
+
 @RestController
 @RequestMapping("/private/usuarios")
 @Tag(name = "Usuarios", description = "Gestión de usuarios")

@@ -5,6 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
+ * Lanzador de la API Biblioteca Ferreria.
+ *
  * @author alexl
  * @date 07/02/2025
  */

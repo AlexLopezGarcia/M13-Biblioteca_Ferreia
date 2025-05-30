@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 /**
+ * Contrlador REST para la gestión de usuarios.
+ *
  * @author alexl
  * @date 16/05/2025
  */

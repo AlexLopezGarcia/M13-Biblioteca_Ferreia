@@ -14,6 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
+/**
+ * Controlador para la autenticación de usuarios.
+ *
+ * @author alexl
+ * @date 16/05/2025
+ * */
+
 @RestController
 @RequestMapping("/auth")
 public class AuthController {

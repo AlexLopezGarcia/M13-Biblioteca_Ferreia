@@ -5,6 +5,8 @@ import cat.ferreria.api.bussiness.model.clazz.Estanteria;
 import lombok.*;
 
 /**
+ * DTO para la entidad Estante.
+ *
  * @author alexl
  * @date 14/03/2025
  */

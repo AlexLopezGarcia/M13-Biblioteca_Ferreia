@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Optional;
 
 /**
+ * Interfaz para los servicios de gestión de libros en la biblioteca.
+ *
  * @author alexl
  * @date 07/02/2025
  */

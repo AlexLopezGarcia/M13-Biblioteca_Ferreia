@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
+ * Controlador REST para la gestión del historial de usuarios.
+ *
  * @author alexl
  * @date 07/02/2025
  */
