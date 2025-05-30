@@ -2,7 +2,6 @@ package cat.ferreria.api.bussiness.model.clazz;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.*;
 
 import jakarta.persistence.Entity;
