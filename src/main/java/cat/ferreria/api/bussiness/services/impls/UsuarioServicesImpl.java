@@ -1,8 +1,4 @@
 package cat.ferreria.api.bussiness.services.impls;
-/**
- * @author Ruben
- * @date 07/02/2025
- */
 
 import cat.ferreria.api.bussiness.model.clazz.Usuario;
 import cat.ferreria.api.bussiness.model.dtos.UsuarioDTO;
@@ -15,6 +11,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+/**
+ * Implementación de los servicios para la entidad Usuario.
+ *
+ * @author Ruben
+ * @date 07/02/2025
+ */
 
 @Service
 public class UsuarioServicesImpl implements UsuarioServices {

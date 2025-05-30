@@ -12,6 +12,13 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 import java.util.Collections;
 
+/**
+ * Filtrador para manejar las solicitudes JWT.
+ *
+ * @author alexl
+ * @date 07/02/2025
+ */
+
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 

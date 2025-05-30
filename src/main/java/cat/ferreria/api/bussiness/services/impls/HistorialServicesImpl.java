@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Optional;
 
 /**
+ * Implementación de los servicios para gestionar el historial de préstamos.
+ *
  * @author alexl
  * @date 07/02/2025
  */

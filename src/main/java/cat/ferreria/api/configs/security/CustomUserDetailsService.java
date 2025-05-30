@@ -11,6 +11,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+/**
+ * Configuración del servicio de detalles de usuario personalizado.
+ *
+ * @author alexl
+ * @date 20/03/2025
+ * */
+
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 

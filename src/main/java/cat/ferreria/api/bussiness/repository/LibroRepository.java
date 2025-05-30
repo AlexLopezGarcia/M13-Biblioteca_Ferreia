@@ -9,6 +9,13 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * Repositorio de libros que extiende JpaRepository para operaciones CRUD.
+ *
+ * @author alexl
+ * @date 14/02/2025
+ * */
+
 @Repository
 public interface LibroRepository extends JpaRepository<Libro, Long> {
     List<Libro> findByIsbn(String isbn);

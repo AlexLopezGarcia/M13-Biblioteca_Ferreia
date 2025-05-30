@@ -18,6 +18,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
+ * Controlador REST para la gestión de estanterías.
+ *
  * @author alexl
  * @date 07/02/2025
  */

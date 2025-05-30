@@ -9,12 +9,17 @@ import org.springframework.transaction.annotation.*;
 
 import java.util.*;
 
+/**
+ * Implementación de los servicios para la entidad Libro.
+ *
+ * @author alexl
+ * @date 23/02/2025
+ * */
+
 @Service
 public class LibroServicesImpl implements LibroServices {
     private final LibroRepository libroRepository;
     private final HistorialRepository historialRepository;
-
-
 
     @Autowired
     public LibroServicesImpl(LibroRepository libroRepository,

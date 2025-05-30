@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Optional;
 
 /**
+ * Interfaz para los servicios de gestión de estantes.
+ *
  * @author alexl
  * @date 14/03/2025
  */

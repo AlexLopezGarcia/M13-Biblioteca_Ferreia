@@ -1,5 +1,8 @@
 package cat.ferreria.api.bussiness.repository;
+
 /**
+ * Repositorio para la entidad Usuario.
+ *
  * @author Ruben
  * @date 18/02/2025
  */

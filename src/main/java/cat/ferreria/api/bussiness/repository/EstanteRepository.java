@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
+ * Repositorio de entidad Estante.
+ *
  * @author alexl
  * @date 14/03/2025
  */

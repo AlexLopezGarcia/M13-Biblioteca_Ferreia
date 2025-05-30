@@ -4,6 +4,8 @@ import cat.ferreria.api.bussiness.model.clazz.Usuario;
 import lombok.*;
 
 /**
+ * DTO para representar un usuario en la API.
+ *
  * @author Ruben
  * @date 18/02/2025
  */
